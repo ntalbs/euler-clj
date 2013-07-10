@@ -1,4 +1,4 @@
 euler
 =====
 
-Project Euler solutions in Clojure
+Project Euleri(http://projecteuler.net) solutions in Clojure.
