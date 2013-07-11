@@ -4,4 +4,7 @@
 
 (defn gcd [a b] (if (= b 0) a (gcd b (rem a b))))
 (defn lcm [a b] (/ (* a b) (gcd a b)))
-(time (reduce lcm (range 1 21)))
+(defn p005 []
+  (reduce lcm (range 1 21)))
+
+(time (println (p005)))
