@@ -1,4 +1,4 @@
-;; euler #003
+;; #003
 ;; largest prime factor of 600851475143
 
 (def N 600851475143)
@@ -15,10 +15,9 @@
          (group-by identity)
          (map (fn [[k c]] [k (count c)])))))
 
-(defn p003 []
+(def p003
   (->> (factorize N)
        (map (fn [[n e]] n))
        (apply max)))
 
-(time (println (p003)))
-
+(time (println p003))
