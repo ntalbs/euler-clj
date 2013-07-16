@@ -1,21 +1,23 @@
 (ns util)
 
 (defn factorial
-  "Returns the factorial of n"
+  "Returns the factorial of n."
   [n]
   (->> (range 1 (inc n))
        (map #(java.math.BigInteger. (str %)))
        (apply *)))
 
 (defn digits
-  "Retruns the list of digits of n"
+  "Retruns the list of digits of n."
   [n]
   (letfn [(digits-acc [n acc]
             (if (< n 10) (conj acc n)
                 (recur (quot n 10) (conj acc (mod n 10)))))]
     (digits-acc n '())))
 
-(defn factorize [n]
+(defn factorize
+  "Returns a sequence of pairs of prime factor and its exponent."
+  [n]
   (let [bound (Math/sqrt n)
         fact (fn [m i acc]
                (if (< i bound)
