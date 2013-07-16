@@ -3,5 +3,6 @@ pom.xml
 *swp
 /lib/
 /classes/
+/data/
 /targets/
 .lein-deps-sum
