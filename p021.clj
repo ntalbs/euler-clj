@@ -1,16 +1,11 @@
 ;; #p021
 ;; Evaluate the sum of all the amicable numbers under 10000.
 
-(defn divisor?
-  "Returns true if x is a divisor of n."
-  [x n] (zero? (rem n x)))
-
-(defn sum-of-divisor [n]
-  (apply + (filter (fn [x] (divisor? x n)) (range 1 (inc (quot n 2))))))
+(use '[util :only (divisor? sum-of-proper-divisor)])
 
 (defn amicable [a]
-  (let [b (sum-of-divisor a)]
-    (if (and (not= a b) (= a (sum-of-divisor b)))
+  (let [b (sum-of-proper-divisor a)]
+    (if (and (not= a b) (= a (sum-of-proper-divisor b)))
       a
       0)))
 

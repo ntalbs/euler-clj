@@ -28,3 +28,12 @@
     (->> (fact n 2 '())
          (group-by identity)
          (map (fn [[k c]] [k (count c)])))))
+
+(defn divisor?
+  "Returns true if x is a divisor of n."
+  [x n] (zero? (rem n x)))
+
+(defn sum-of-proper-divisor
+  "Returns the sum of n's proper divisors."
+  [n]
+  (apply + (filter (fn [x] (divisor? x n)) (range 1 (inc (quot n 2))))))
