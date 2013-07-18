@@ -33,7 +33,38 @@
   "Returns true if x is a divisor of n."
   [x n] (zero? (rem n x)))
 
+;; (defn proper-divisors
+;;   "Returns the proper divisors of n."
+;;   [n]
+;;   (filter (fn [x] (divisor? x n)) (range 1 (inc (quot n 2)))))
+
+(defn proper-divisors
+  "Returns the proper divisors of n."
+  [n]
+  (let [bound (inc (int (Math/sqrt n)))]
+    (conj (->> (range 2 bound)
+               (mapcat (fn [i]
+                         (if (divisor? i n)
+                           (let [q (quot n i)]
+                             (if (not= i q) [i (quot n i)] [i])))))
+               (filter (complement nil?))
+               sort)
+          1)))
+
 (defn sum-of-proper-divisor
   "Returns the sum of n's proper divisors."
   [n]
-  (apply + (filter (fn [x] (divisor? x n)) (range 1 (inc (quot n 2))))))
+  (apply + (proper-divisors n)))
+
+(defn prime?
+  "Returns true if n is prime."
+  [n]
+  (cond (= n 1) false
+        (< n 4) true                    ; 2, 3
+        (even? n) false
+        (< n 9) true                    ; 5, 7
+        (= 0 (mod n 3)) false
+        :else (empty?
+               (take 1 (filter
+                        #(= 0 (mod n %))
+                        (range 3 (inc (int (Math/sqrt n))) 2))))))
