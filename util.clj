@@ -15,19 +15,31 @@
                 (recur (quot n 10) (conj acc (mod n 10)))))]
     (digits-acc n '())))
 
+(defn prime?
+  "Returns true if n is prime."
+  [n]
+  (cond (= n 1) false
+        (< n 4) true                    ; 2, 3
+        (even? n) false
+        (< n 9) true                    ; 5, 7
+        (= 0 (mod n 3)) false
+        :else (empty? (take 1 (filter
+                               #(= 0 (mod n %))
+                               (range 3 (inc (int (Math/sqrt n))) 2))))))
+
 (defn factorize
   "Returns a sequence of pairs of prime factor and its exponent."
   [n]
-  (let [bound (Math/sqrt n)
-        fact (fn [m i acc]
-               (if (< i bound)
-                 (if (= 0 (mod m i))
-                   (recur (quot m i) i (conj acc i))
-                   (recur m (inc i) acc))
-                 acc))]
-    (->> (fact n 2 '())
-         (group-by identity)
-         (map (fn [[k c]] [k (count c)])))))
+  (letfn [(fact [m i acc]
+            (let [m-is-prime (prime? m)] ; if m is prime, doesn't need to go further. just append it to acc.
+              (if (and (< i n) (not m-is-prime))
+                (if (= 0 (mod m i))
+                  (recur (quot m i) i (conj acc i))
+                  (recur m (inc i) acc))
+                (let [xs (->> (group-by identity (if m-is-prime (conj acc m) acc)) 
+                              (map (fn [[p ps]] [p (count ps)])))]
+                  (if (empty? xs) (list [n 1]) xs)))))]
+    (fact n 2 [])))
 
 (defn divisor?
   "Returns true if x is a divisor of n."
@@ -55,16 +67,3 @@
   "Returns the sum of n's proper divisors."
   [n]
   (apply + (proper-divisors n)))
-
-(defn prime?
-  "Returns true if n is prime."
-  [n]
-  (cond (= n 1) false
-        (< n 4) true                    ; 2, 3
-        (even? n) false
-        (< n 9) true                    ; 5, 7
-        (= 0 (mod n 3)) false
-        :else (empty?
-               (take 1 (filter
-                        #(= 0 (mod n %))
-                        (range 3 (inc (int (Math/sqrt n))) 2))))))
