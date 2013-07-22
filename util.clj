@@ -1,12 +1,5 @@
 (ns util)
 
-(defn factorial
-  "Returns the factorial of n."
-  [n]
-  (->> (range 1 (inc n))
-       (map #(java.math.BigInteger. (str %)))
-       (apply *)))
-
 (defn digits
   "Retruns the list of digits of n."
   [n]
@@ -15,17 +8,23 @@
                 (recur (quot n 10) (conj acc (mod n 10)))))]
     (digits-acc n '())))
 
-(defn prime?
-  "Returns true if n is prime."
+(defn divisor?
+  "Returns true if x is a divisor of n."
+  [x n] (zero? (rem n x)))
+
+(defn gcd [a b]
+  (if (= b 0) a (gcd b (rem a b))))
+
+(defn lcm [a b]
+  (/ (* a b) (gcd a b)))
+
+(defn factorial
+  "Returns the factorial of n."
   [n]
-  (cond (= n 1) false
-        (< n 4) true                    ; 2, 3
-        (even? n) false
-        (< n 9) true                    ; 5, 7
-        (= 0 (mod n 3)) false
-        :else (empty? (take 1 (filter
-                               #(= 0 (mod n %))
-                               (range 3 (inc (int (Math/sqrt n))) 2))))))
+  (->> (range 1 (inc n))
+       (apply *')))
+
+(def prime?)
 
 (defn factorize
   "Returns a sequence of pairs of prime factor and its exponent."
@@ -41,9 +40,27 @@
                   (if (empty? xs) (list [n 1]) xs)))))]
     (fact n 2 [])))
 
-(defn divisor?
-  "Returns true if x is a divisor of n."
-  [x n] (zero? (rem n x)))
+(defn phi
+  "Returns the number of the positive integers less than or equal to n 
+   that are relatively prime to n.
+   Aka Euler's totient of phi function."
+  ([p k] (* (apply * (repeat k p)) (- 1 (/ 1 p))))
+  ([n]
+     (->> (factorize n)
+          (map (fn [[p k]] (phi p k)))
+          (apply *))))
+
+(defn prime?
+  "Returns true if n is prime."
+  [n]
+  (cond (= n 1) false
+        (< n 4) true                    ; 2, 3
+        (even? n) false
+        (< n 9) true                    ; 5, 7
+        (= 0 (mod n 3)) false
+        :else (empty? (take 1 (filter
+                               #(= 0 (mod n %))
+                               (range 3 (inc (int (Math/sqrt n))) 2))))))
 
 ;; (defn proper-divisors
 ;;   "Returns the proper divisors of n."
