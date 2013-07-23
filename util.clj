@@ -24,6 +24,9 @@
   (->> (range 1 (inc n))
        (apply *')))
 
+(defn pow [x n]
+  (reduce *' (repeat n x)))
+
 (def prime?)
 
 (defn factorize
