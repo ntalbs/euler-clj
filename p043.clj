@@ -1,6 +1,6 @@
 ;; #043
 
-(use '[clojure.contrib.combinatorics :only (permutations)])
+(use '[clojure.math.combinatorics :only (permutations)])
 
 (defn check [ds]
   "Returns the number whose digits are ds if the number satisfies the condition.
