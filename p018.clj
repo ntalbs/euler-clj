@@ -1,5 +1,6 @@
 ;; #018
 ;; maximum total from top to bottom of the triangle
+;; Refer to #067.
 
 (def triangle
   (reverse
