@@ -12,22 +12,39 @@
   "Returns true if x is a divisor of n."
   [x n] (zero? (rem n x)))
 
-(defn gcd [a b]
-  (if (= b 0) a (gcd b (rem a b))))
+(defn gcd
+  "Returns the greatest common divisor of a and b."
+  [a b] (if (= b 0) a (gcd b (rem a b))))
 
-(defn lcm [a b]
-  (/ (* a b) (gcd a b)))
+(defn lcm
+  "Returns the least common multiplier of a and b."
+  [a b] (/ (* a b) (gcd a b)))
 
 (defn factorial
   "Returns the factorial of n."
+  [n] (apply *' (range 1 (inc n))))
+
+(defn perfect-square?
+  "Returns true if n is perfect number which means sqrt(n) is intger."
   [n]
-  (->> (range 1 (inc n))
-       (apply *')))
+  (let [r (int (Math/sqrt n))]
+    (= n (* r r))))
 
-(defn pow [x n]
-  (reduce *' (repeat n x)))
+(defn pow
+  "Compute x^n."
+  [x n] (reduce *' (repeat n x)))
 
-(def prime?)
+(defn prime?
+  "Returns true if n is prime."
+  [n]
+  (cond (= n 1) false
+        (< n 4) true                    ; 2, 3
+        (even? n) false
+        (< n 9) true                    ; 5, 7
+        (= 0 (mod n 3)) false
+        :else (empty? (take 1 (filter
+                               #(= 0 (mod n %))
+                               (range 3 (inc (int (Math/sqrt n))) 2))))))
 
 (defn factorize
   "Returns a sequence of pairs of prime factor and its exponent."
@@ -52,18 +69,6 @@
      (->> (factorize n)
           (map (fn [[p k]] (phi p k)))
           (apply *))))
-
-(defn prime?
-  "Returns true if n is prime."
-  [n]
-  (cond (= n 1) false
-        (< n 4) true                    ; 2, 3
-        (even? n) false
-        (< n 9) true                    ; 5, 7
-        (= 0 (mod n 3)) false
-        :else (empty? (take 1 (filter
-                               #(= 0 (mod n %))
-                               (range 3 (inc (int (Math/sqrt n))) 2))))))
 
 ;; (defn proper-divisors
 ;;   "Returns the proper divisors of n."
