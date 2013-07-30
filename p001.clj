@@ -13,10 +13,8 @@
 ; improved: using formula, s(n) = n(n+1)/2
 ; much faster method. The size of n does not affect the calculation time.
 (defn s
-  ([n]
-     (/ (* n (+ n 1)) 2))
-  ([n m]
-     (* m (s (quot n m)))))
+  ([n] (/ (* n (+ n 1)) 2))
+  ([n m] (* m (s (quot n m)))))
 
 (def p001-2
   (let [n (dec 1000)]
