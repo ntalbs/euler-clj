@@ -4,7 +4,7 @@
 (require '[clojure.string :only (replace split) :as str])
 
 (def names
-  (-> (slurp "data/names.txt")
+  (-> (slurp "../data/names.txt")
       (str/replace "\"" "")
       (str/split #",")
       sort))

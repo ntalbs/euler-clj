@@ -7,7 +7,7 @@
 
 (def triangle
   (map (fn [s] (map parse-int (split s #" ")))
-       (split (slurp "data/triangle.txt") #"\r\n")))
+       (split (slurp "../data/triangle.txt") #"\r\n")))
 
 (defn find-max [t]
   (reduce (fn [ls vs] (map max (map + ls vs) (map + (rest ls) vs))) t))
