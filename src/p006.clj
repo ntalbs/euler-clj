@@ -9,9 +9,9 @@
 (def sq-of-sum
   (let [sum (reduce + s)]
     (* sum sum)))
-(def p006-1 (- sq-of-sum sum-of-sq))
+(defn [] p006-1 (- sq-of-sum sum-of-sq))
 
-(time (println "initial => " p006-1))
+(time (println "initial => " (p006-1)))
 
 ; improved: using formula.
 ; sum(n) = n(n+1)/2
@@ -21,6 +21,6 @@
     (* s s)))
 (defn sum-of-sq [n]
   (/ (* n (+ n 1) (+ (* 2 n) 1)) 6))
-(def p006-2 (- (sq-of-sum 100) (sum-of-sq 100)))
+(defn [] p006-2 (- (sq-of-sum 100) (sum-of-sq 100)))
 
-(time (println "improved => " p006-2))
+(time (println "improved => " (p006-2)))
