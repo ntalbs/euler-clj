@@ -4,7 +4,7 @@
 
 (use '[util :only (gcd lcm)])
 
-(def p005
+(defn p005 []
   (reduce lcm (range 1 21)))
 
-(time (println p005))
+(time (println (p005)))
