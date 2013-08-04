@@ -22,10 +22,10 @@
             "05886116467109405077541002256983155200055935729725"
             "71636269561882670428252483600823257530420752963450"))
 (defn toInt [n] (- (int n) 48))
-(def p008
+(defn p008 []
   (->> (partition 5 1 s)
        (map (fn [l] (map toInt l)))
        (map (fn [l] (apply * l)))
        (reduce max)))
 
-(time (println p008))
+(time (println (p008)))
