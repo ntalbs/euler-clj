@@ -3,7 +3,7 @@
 
 (defn fibo [[a b]] [b (+ a b)])
 
-(def p002
+(defn p002 []
   (let [limit 4000000]
     (->> (iterate fibo [1 1])
          (take-while (fn [[a b]] (<= b limit)))
@@ -11,4 +11,4 @@
          (filter even?)
          (apply +))))
 
-(time (println p002))
+(time (println (p002)))
