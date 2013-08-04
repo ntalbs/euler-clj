@@ -4,9 +4,9 @@
 
 (def N 600851475143)
 
-(def p003
+(defn p003 []
   (->> (factorize N)
        (map (fn [[n e]] n))
        (apply max)))
 
-(time (println p003))
+(time (println (p003)))
