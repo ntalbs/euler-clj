@@ -1,7 +1,7 @@
 ;; #003
 ;; largest prime factor of 600851475143
 
-(use '[util :only [factorize]])
+(use '[util :only (factorize)])
 
 (def N 600851475143)
 
