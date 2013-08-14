@@ -64,7 +64,9 @@
   "Returns the number of the positive integers less than or equal to n 
    that are relatively prime to n.
    Aka Euler's totient of phi function."
-  ([p k] (* (apply * (repeat k p)) (- 1 (/ 1 p))))
+  ([p k]
+     (letfn [(power [p k] (apply * (repeat k p)))]
+       (* (power p k) (- 1 (/ 1 p)))))
   ([n]
      (->> (factorize n)
           (map (fn [[p k]] (phi p k)))
