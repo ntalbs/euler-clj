@@ -5,16 +5,14 @@
 (defn f [a b n]
   (+ (* n n) (* a n) b))
 
-(defn prime-count
-  [a b]
+(defn prime-count [a b]
   (->> (iterate inc 0)
        (map #(f a b %))
        (map #(Math/abs %))
        (take-while prime?)
        count))
 
-(defn seq-of-prime-count
-  []
+(defn seq-of-prime-count []
   (let [lower -999 upper 1000]
     (for [a (range  lower upper) b (range lower upper)
           :when (prime? b)
