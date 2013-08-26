@@ -55,13 +55,13 @@
                 (if (= 0 (mod m i))
                   (recur (quot m i) i (conj acc i))
                   (recur m (inc i) acc))
-                (let [xs (->> (group-by identity (if m-is-prime (conj acc m) acc)) 
+                (let [xs (->> (group-by identity (if m-is-prime (conj acc m) acc))
                               (map (fn [[p ps]] [p (count ps)])))]
                   (if (empty? xs) (list [n 1]) xs)))))]
     (fact n 2 [])))
 
 (defn phi
-  "Returns the number of the positive integers less than or equal to n 
+  "Returns the number of the positive integers less than or equal to n
    that are relatively prime to n.
    Aka Euler's totient of phi function."
   ([p k]
