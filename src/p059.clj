@@ -15,5 +15,18 @@
          (map char)
          (apply str))))
 
-; not complete ...
-; working ...
+(def a2z
+  (map char (range (int \a) (inc (int \z)))))
+
+(def passwd-candidates
+  (for [a a2z b a2z c a2z]
+    (str a b c)))
+
+(defn p059 []
+  (->> (map #(decipher encrypted-message %) passwd-candidates)
+       (filter #(re-matches #"[^`~\p{Cntrl}]+" %))
+       (first)
+       (map int)
+       (apply +)))
+
+(time (println (p059)))
