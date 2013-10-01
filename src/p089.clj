@@ -18,8 +18,8 @@
        (apply +)))
 
 (defn p089 []
-  (let [cnt-before (count-chars romans)
-        cnt-after (count-chars (map shorten romans))]
-    (- cnt-before cnt-after)))
+  (let [cnt0 (count-chars romans)
+        cnt1 (count-chars (map shorten romans))]
+    (- cnt0 cnt1)))
 
 (time (println (p089)))
