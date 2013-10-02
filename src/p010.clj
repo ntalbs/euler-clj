@@ -5,8 +5,16 @@
 
 ; initial: Takes around 10 secs. Too slow.
 (defn p010-1 [bound]
-  (reduce + (filter prime? (range 2 (inc bound)))))
+  (->> (filter prime? (range 2 (inc bound)))
+       (reduce +)))
 
 (time (println (p010-1 2000000)))
 
-; improved: TODO
+; second: Use clojure.contrib.lazy-seqs primes.
+(use '[clojure.contrib.lazy-seqs :only (primes)])
+
+(defn p010-2 [bound]
+  (->> (take-while #(< % bound) primes)
+       (reduce +)))
+
+(time (println (p010-2 2000000)))
