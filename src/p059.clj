@@ -4,7 +4,7 @@
      '[clojure.string :only [split trim]])
 
 (def encrypted-message
-  (->> (split (slurp "data/cipher1.txt") #",")
+  (->> (split (slurp "../data/cipher1.txt") #",")
        (map trim)
        (map parse-int)))
 
