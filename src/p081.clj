@@ -19,7 +19,7 @@
             (for [j (range (- (dec n) i))]
               [(- (dec n) j i 1) j]))))
 
-(defn- min-sum [xs ys]
+(defn min-sum [xs ys]
   (if (< (count xs) (count ys))
     (map min
          (map + (concat xs [1000000]) ys)
