@@ -1,8 +1,7 @@
 ;; #059
 
-(use '[clojure.string :only (split trim)])
-
-(defn parse-int [s] (Integer/parseInt s))
+(use '[util :only [parse-int]]
+     '[clojure.string :only [split trim]])
 
 (def encrypted-message
   (->> (split (slurp "data/cipher1.txt") #",")

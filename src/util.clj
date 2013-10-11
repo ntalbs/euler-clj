@@ -1,5 +1,8 @@
 (ns util)
 
+(defn parse-int [s]
+  (Integer/parseInt s))
+
 (defn digits
   "Retruns the list of digits of n."
   [n]

@@ -1,9 +1,8 @@
 ;; #067
 ;; Basically the same as #018.
 
-(use '[clojure.string :only (split)])
-
-(defn parse-int [s] (Integer/parseInt s))
+(use '[util :only [parse-int]]
+     '[clojure.string :only [split]])
 
 (def triangle
   (map (fn [s] (map parse-int (split s #" ")))

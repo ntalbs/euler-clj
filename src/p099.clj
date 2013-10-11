@@ -1,8 +1,7 @@
 ;; #099
 
-(use '[clojure.string :only (split)])
-
-(defn parse-int [s] (Integer/parseInt s))
+(use '[util :only [parse-int]]
+     '[clojure.string :only [split]])
 
 (def log-vals
   (->> (map (fn [s] (split s #",")) (split (slurp "data/base_exp.txt") #"\r\n"))

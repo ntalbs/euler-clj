@@ -1,7 +1,6 @@
 ;; #081
 
-(defn parse-int [s]
-  (Integer/parseInt s))
+(use '[util :only [parse-int]])
 
 (def m
   (->> (clojure.string/split (slurp "../data/matrix.txt") #"\r\n")
