@@ -19,11 +19,14 @@
             (for [j (range (- (dec n) i))]
               [(- (dec n) j i 1) j]))))
 
+(defn mg [xs ys]
+  (flatten (vector (first xs)
+                   (map min (rest xs) ys)
+                   (last ys))))
+
 (defn min-sum [xs ys]
   (if (< (count xs) (count ys))
-    (map min
-         (map + (concat xs [1000000]) ys)
-         (map + (concat [10000000] xs) ys))
+    (mg (map + xs ys) (map + xs (rest ys)))
     (map min (map + xs ys) (map + (rest xs) ys))))
 
 (defn p081 [m]
