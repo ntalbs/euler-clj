@@ -12,6 +12,6 @@
   (reduce (fn [ls vs] (map max (map + ls vs) (map + (rest ls) vs))) t))
 
 (defn p067 []
-  (find-max (reverse triangle)))
+  (first (find-max (reverse triangle))))
 
 (time (println (p067)))

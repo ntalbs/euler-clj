@@ -30,6 +30,7 @@
 
 (defn p081 [m]
   (->> (map (fn [ks] (for [k ks] (get-in m k))) (t (count m)))
-       (reduce min-sum)))
+       (reduce min-sum)
+       first))
 
 (time (println (p081 m)))
