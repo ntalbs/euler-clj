@@ -3,7 +3,7 @@
 (use '[util :only [parse-int]])
 
 (def m
-  (->> (clojure.string/split (slurp "../data/matrix.txt") #"\r\n")
+  (->> (clojure.string/split (slurp "data/matrix.txt") #"\r\n")
        (map (fn [line] (vec (map parse-int (clojure.string/split line #",")))))
        vec))
 

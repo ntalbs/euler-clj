@@ -4,7 +4,7 @@
 (use '[util :only (digits)])
 
 (def keylog
-  (->> (clojure.string/split (slurp "../data/keylog.txt") #"\r\n")
+  (->> (clojure.string/split (slurp "data/keylog.txt") #"\r\n")
        distinct
        sort))
 
