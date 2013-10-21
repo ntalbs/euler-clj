@@ -3,7 +3,7 @@
 (def numbers [\A \2 \3 \4 \5 \6 \7 \8 \9 \T \J \Q \K \A])
 
 (def ranks
-  {\2 2, \3 3, \4 4, \5 5, \6 6, \7 7, \8 8, \9 9, \T 10, \J 11, \Q 12, \K 13, \A 1})
+  {\2 2, \3 3, \4 4, \5 5, \6 6, \7 7, \8 8, \9 9, \T 10, \J 11, \Q 12, \K 13, \A 14})
 
 (def straight
   (into #{} (map #(into #{} %) (partition 5 1 numbers))))
@@ -39,31 +39,44 @@
                (map (fn [[k v]] (count v))))]
     (or (= [2 3] v) (= [3 2] v))))
 
+;;; no royal-flush, straight-flush, four-cards, full-house
+
+(defn highest [nums]
+  (reduce max (map ranks nums)))
+
 (defn flush? [cards]
-  (->> (map last cards)
-       (group-by identity)
-       (count)
-       (= 1)))
+  (if (->> (map last cards)
+           (group-by identity)
+           (count)
+           (= 1))
+    (highest (map first cards))))
 
 (defn straight? [cards]
-  (contains? straight (into #{} (map first cards))))
+  (if (contains? straight (into #{} (map first cards)))
+    (highest (map first cards))))
+
+(def not-empty? (comp not empty?))
 
 (defn three-card? [cards]
-  (->> (map first cards)
-       (group-by identity)
-       (filter (fn [[k v]] (= (count v) 3)))
-       (empty?)
-       (not)))
+  (let [three-card (->> (map first cards)
+                        (group-by identity)
+                        (filter (fn [[k v]] (= (count v) 3))))]
+    (if (not-empty? three-card)
+      (ranks (first (first three-card))))))
 
 (defn two-pairs? [cards]
-  (= 2 (count (->> (map first cards)
+  (let [pairs (->> (map first cards)
                    (group-by identity)
-                   (filter (fn [[k v]] (= (count v) 2)))))))
+                   (filter (fn [[k v]] (= (count v) 2))))]
+    (if (= 2 (count pairs))
+      (apply max (map ranks (map first pairs))))))
 
 (defn one-pair? [cards]
-  (= 1 (count (->> (map first cards)
+  (let [pairs (->> (map first cards)
                    (group-by identity)
-                   (filter (fn [[k v]] (= (count v) 2)))))))
+                   (filter (fn [[k v]] (= (count v) 2))))]
+    (if (= 1 (count pairs))
+      (apply max (map ranks (map first pairs))))))
 
 (defn higest-value [cards]
   (->> (map first cards)
@@ -71,20 +84,21 @@
        (apply max)))
 
 (defn score [cards]
-  (cond (royal-flush? cards) 100
-        (straight-flush? cards) 90
-        (four-card? cards) 80
-        (full-house? cards) 70
-        (flush? cards) 60
-        (straight? cards) 50
-        (three-card? cards) 40
-        (two-pairs? cards) 30
-        (one-pair? cards) 20
-        :else (higest-value cards)))
+  (cond (royal-flush? cards) [100 1]
+        (straight-flush? cards) [90 1]
+        (four-card? cards) [80 1]
+        (full-house? cards) [70 1]
+        (flush? cards) [60 (flush? cards)]
+        (straight? cards) [50 (straight? cards)]
+        (three-card? cards) [40 (three-card? cards)]
+        (two-pairs? cards) [30 (two-pairs? cards)]
+        (one-pair? cards) [20 (one-pair? cards)]
+        :else [0 (higest-value cards)]))
 
 (defn winner [p1-cards p2-cards]
-  (let [p1-score (score p1-cards) p2-score (score p2-cards)
-        p1-higest (higest-value p1-cards) p2-highest (higest-value p2-cards)]
+  (let [p1 (score p1-cards) p2 (score p2-cards)
+        p1-score (first p1) p2-score (first p2)
+        p1-higest (second p1) p2-highest (second p2)]
     (cond (> p1-score p2-score) :p1
           (< p1-score p2-score) :p2
           :else (cond (> p1-higest p2-highest) :p1
@@ -93,6 +107,7 @@
 (defn p054 []
   (->> (map (fn [g] (winner (g :p1) (g :p2))) games)
        (group-by identity)
-       (map (fn [[k v]] [k (count v)]))))
+       :p1
+       count))
 
 (time (println (p054)))
