@@ -17,7 +17,7 @@
 
 (defn gcd
   "Returns the greatest common divisor of a and b."
-  [a b] (if (= b 0) a (gcd b (rem a b))))
+  [a b] (if (= b 0) a (recur b (rem a b))))
 
 (defn lcm
   "Returns the least common multiplier of a and b."
