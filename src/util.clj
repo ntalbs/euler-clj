@@ -48,19 +48,32 @@
                                #(= 0 (mod n %))
                                (range 3 (inc (int (Math/sqrt n))) 2))))))
 
+;; (defn factorize
+;;   "Returns a sequence of pairs of prime factor and its exponent."
+;;   [n]
+;;   (letfn [(fact [m i acc]
+;;             (let [m-is-prime (prime? m)] ; if m is prime, doesn't need to go further. just append it to acc.
+;;               (if (and (< i n) (not m-is-prime))
+;;                 (if (= 0 (mod m i))
+;;                   (recur (quot m i) i (conj acc i))
+;;                   (recur m (inc i) acc))
+;;                 (let [xs (->> (group-by identity (if m-is-prime (conj acc m) acc))
+;;                               (map (fn [[p ps]] [p (count ps)])))]
+;;                   (if (empty? xs) (list [n 1]) xs)))))]
+;;     (fact n 2 [])))
+
 (defn factorize
   "Returns a sequence of pairs of prime factor and its exponent."
   [n]
-  (letfn [(fact [m i acc]
-            (let [m-is-prime (prime? m)] ; if m is prime, doesn't need to go further. just append it to acc.
-              (if (and (< i n) (not m-is-prime))
-                (if (= 0 (mod m i))
-                  (recur (quot m i) i (conj acc i))
-                  (recur m (inc i) acc))
-                (let [xs (->> (group-by identity (if m-is-prime (conj acc m) acc))
-                              (map (fn [[p ps]] [p (count ps)])))]
-                  (if (empty? xs) (list [n 1]) xs)))))]
-    (fact n 2 [])))
+  (loop [m n, i 2, acc []]
+    (let [m-is-prime (prime? m)] ; if m is prime, doesn't need to go further. just append it to acc.
+      (if (and (< i n) (not m-is-prime))
+        (if (= 0 (mod m i))
+          (recur (quot m i) i (conj acc i))
+          (recur m (inc i) acc))
+        (let [xs (->> (group-by identity (if m-is-prime (conj acc m) acc))
+                      (map (fn [[p ps]] [p (count ps)])))]
+          (if (empty? xs) (list [n 1]) xs))))))
 
 (defn phi
   "Returns the number of the positive integers less than or equal to n
