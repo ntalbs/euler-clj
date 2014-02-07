@@ -6,10 +6,9 @@
 (defn digits
   "Retruns the list of digits of n."
   [n]
-  (letfn [(digits-acc [n acc]
-            (if (< n 10) (conj acc n)
-                (recur (quot n 10) (conj acc (mod n 10)))))]
-    (digits-acc n '())))
+  (loop [n n acc '()]
+    (if (< n 10) (conj acc n)
+        (recur (quot n 10) (conj acc (mod n 10))))))
 
 (defn divisor?
   "Returns true if x is a divisor of n."
