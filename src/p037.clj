@@ -1,12 +1,12 @@
 ;; #037
-;; Find the sum of the only eleven primes 
+;; Find the sum of the only eleven primes
 ;; that are both truncatable from left to right and right to left.
 
 (use '[clojure.contrib.lazy-seqs :only [primes]]
-     '[util :only [prime? digits]])
+     '[util :only [parse-int prime? digits]])
 
 (defn to-int [digits]
-  (Integer/parseInt (apply str digits)))
+  (parse-int (apply str digits)))
 
 (defn truncated-nums
   "Returns the sequence of numbers which are truncated from left and right."

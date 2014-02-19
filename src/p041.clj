@@ -1,13 +1,13 @@
 ;; #041
 
-(use '[util :only (prime?)]
+(use '[util :only (parse-int prime?)]
      '[clojure.contrib.combinatorics :only (permutations)])
 
 (def ds (range 1 10))
 
 (defn investigate [v]
   (->> (permutations (reverse v))
-       (map #(Integer/parseInt (apply str %)))
+       (map #(parse-int (apply str %)))
        (filter prime?)
        (take 1)))
 

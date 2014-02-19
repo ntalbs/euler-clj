@@ -1,7 +1,7 @@
 ;; #035
 ;; How many circular primes are there below one million?
 
-(use '[util :only (digits prime?)]
+(use '[util :only (parse-int digits prime?)]
      '[clojure.contrib.lazy-seqs :only (primes)])
 
 (defn circular-nums [n]
@@ -9,7 +9,7 @@
     (->> (cycle ds)
          (partition len 1)
          (take len)
-         (map #(Integer/parseInt (apply str %))))))
+         (map #(parse-int (apply str %))))))
 
 (defn all-prime? [coll]
   (every? prime? coll))

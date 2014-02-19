@@ -1,11 +1,11 @@
 ;; #104
 
-(use '[util :only [digits pow]])
+(use '[util :only [parse-int digits pow]])
 
 (defn fibo [[a b]] [b (+' a b)])
 
 (defn first-9-digits [n]
-  (Integer/parseInt (apply str (take 9 (str n)))))
+  (parse-int (apply str (take 9 (str n)))))
 
 (defn last-9-digits [n]
   (mod n 1000000000))

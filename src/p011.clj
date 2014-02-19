@@ -3,7 +3,8 @@
 ;; in the same direction (up, down, left, right, or diagonally)
 ;; in the 20x20 grid?
 
-(use '[clojure.string :only (split)])
+(use '[util :only (parse-int)]
+     '[clojure.string :only (split)])
 
 (def data
   ["08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08"
@@ -29,7 +30,7 @@
 
 (def m
   (->> (map (fn [s] (split s #"\s")) data)
-       (map (fn [l] (map #(Integer/parseInt %) l)))
+       (map (fn [l] (map #(parse-int %) l)))
        (map vec)
        vec))
 

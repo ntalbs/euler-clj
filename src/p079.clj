@@ -1,7 +1,7 @@
 ;; #079
 
 (require '[clojure.set :as set])
-(use '[util :only (digits)])
+(use '[util :only (parse-int digits)])
 
 (def keylog
   (->> (clojure.string/split (slurp "data/keylog.txt") #"\r\n")
@@ -9,7 +9,7 @@
        sort))
 
 (def pairs
-  (->> (map #(Integer/parseInt %) keylog)
+  (->> (map #(parse-int %) keylog)
        (map digits)
        (mapcat #(partition 2 1 %))
        distinct))

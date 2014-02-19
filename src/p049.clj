@@ -2,7 +2,7 @@
 
 (use '[clojure.contrib.lazy-seqs :only (primes)]
      '[clojure.math.combinatorics :only (permutations)]
-     '[util :only (digits prime?)])
+     '[util :only (parse-int digits prime?)])
 
 (def four-digits-primes
   (->> primes
@@ -11,7 +11,7 @@
 
 (defn permutation-nums [n]
   (->> (permutations (util/digits n))
-       (map #(Integer/parseInt (apply str %)))
+       (map #(parse-int (apply str %)))
        (filter #(<= n %))
        (distinct)
        (sort)))
