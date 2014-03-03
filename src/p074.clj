@@ -10,11 +10,10 @@
 (def sum-of-factorial (memoize sum-of-factorial))
 
 (defn count-steps [n]
-  (letfn [(cnt-steps [s chain cnt]
-            (let [x (sum-of-factorial s)]
-              (if (contains? chain x) cnt
-                  (recur x (conj chain x) (inc cnt)))))]
-        (cnt-steps n #{n} 1)))
+  (loop [s n chain #{n} cnt 1]
+    (let [x (sum-of-factorial s)]
+      (if (contains? chain x) cnt
+          (recur x (conj chain x) (inc cnt))))))
 
 (defn p074 []
   (->> (range 1 (inc 1000000))
