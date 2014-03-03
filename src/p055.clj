@@ -8,18 +8,16 @@
   (= n (reverse-num n)))
 
 (defn lychrel? [n]
-  (letfn [(lych? [n cnt]
-            (if (< 50 cnt)
-              true
-              (let [sn (+' n (reverse-num n))]
-                (if (palindrome? sn)
-                  false
-                  (recur sn (inc cnt))))))]
-    (lych? n 1)))
+  (loop [n n cnt 1]
+    (if (< 50 cnt)
+      true
+      (let [sn (+' n (reverse-num n))]
+        (if (palindrome? sn)
+          false
+          (recur sn (inc cnt)))))))
 
 (defn p055 []
   (->> (range 10 (inc 10000))
-      ; (filter #(not= 0 (mod % 10)))
        (filter lychrel?)
        count))
 
