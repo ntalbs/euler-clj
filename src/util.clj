@@ -95,3 +95,21 @@
   "Returns the sum of n's proper divisors."
   [n]
   (apply + (proper-divisors n)))
+
+(defn- valid?
+  "returns true if ops is valid sequence of expression. used internally in calc macro. "
+  [ops]
+  (and (odd? (count ops))
+       (->> ops
+            rest
+            (take-nth 2)
+            (apply =))))
+
+(defmacro infix
+  "transform then given infix arithematic expresssion to prefix and compute it."
+  [ops]
+  (if (coll? ops)
+    (if (valid? ops)
+      (cons (second ops) (for [x (take-nth 2 ops)] `(infix ~x)))
+      (throw (Exception. "Invalid expression.")))
+    ops))
