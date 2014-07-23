@@ -1,7 +1,8 @@
 ;; #022
 ;; What is the total of all the name scores in the file (names.txt)?
 
-(require '[clojure.string :only (replace split) :as str])
+(ns p022
+  (:require [clojure.string :as str]))
 
 (def names
   (-> (slurp "data/names.txt")
@@ -17,4 +18,5 @@
        (map (fn [[i e]] (* (inc i) (score e))))
        (apply +)))
 
-(time (println (p022)))
+(defn solve []
+  (time (println (p022))))

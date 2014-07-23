@@ -1,7 +1,7 @@
 ;; #025
 ;; What is the first term in the Fibonacci sequence to contain 1000 digits?
 
-(import java.math.BigInteger)
+(ns p025)
 
 (defn fibo [[a b]] [b (+' a b)])
 
@@ -12,4 +12,5 @@
        first
        first))
 
-(time (println (p025)))
+(defn solve []
+  (time (println (p025))))

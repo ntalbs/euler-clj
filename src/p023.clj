@@ -1,8 +1,9 @@
 ;; #023
-;; Find the sum of all the positive integers 
+;; Find the sum of all the positive integers
 ;; which cannot be written as the sum of two abundant numbers.
 
-(use '[util :only (divisor? sum-of-proper-divisor)])
+(ns p023
+  (:require [util :refer [divisor? sum-of-proper-divisor]]))
 
 (def limit 28123)
 
@@ -21,4 +22,5 @@
          (filter (fn [i] (nil? (sum-of-2-abundants i))))
          (apply +))))
 
-(time (println (p023)))
+(defn solve []
+  (time (println (p023))))
