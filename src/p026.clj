@@ -2,8 +2,10 @@
 ;; Find the value of d  1000 for which 1/d contains the longest recurring cycle
 ;; in its decimal fraction part.
 
+(ns p026)
+
 (defn qs [n]
-  "Returns the unit fraction of denominator n 
+  "Returns the unit fraction of denominator n
    in the form of [n [quotient digits] (# of digits of recurring cycle)].
    Though the second element of the vector also counts non recurring part,
    it doesn't affect the answer."
@@ -18,4 +20,5 @@
        (apply max-key (fn [[n _ cnt]] cnt))
        first))
 
-(time (println (p026)))
+(defn solve []
+  (time (println (p026))))

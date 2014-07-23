@@ -1,5 +1,7 @@
 ;; #028
 
+(ns p028)
+
 (defn square [n] (* n n))
 
 ; n=(1 2 3 4)라 할 때,
@@ -13,4 +15,5 @@
             (apply + (map (partial l i) (range 1 5))))]
     (+ 1 (apply + s))))
 
-(time (println (p028 1001)))
+(defn solve []
+  (time (println (p028 1001))))

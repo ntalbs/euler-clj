@@ -1,6 +1,7 @@
 ;; #027
 
-(use '[util :only (prime?)])
+(ns p027
+  (:require [util :refer [prime?]]))
 
 (defn f [a b n]
   (+ (* n n) (* a n) b))
@@ -23,4 +24,5 @@
 (defn p027 []
   (reduce (fn [a b] (if (< (:cnt a) (:cnt b)) b a)) (seq-of-prime-count)))
 
-(time (println (p027)))
+(defn solve []
+  (time (println (p027))))

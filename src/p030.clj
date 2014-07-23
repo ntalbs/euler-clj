@@ -1,8 +1,9 @@
 ;; #030
-;; Find the sum of all the numbers that can be written 
+;; Find the sum of all the numbers that can be written
 ;; as the sum of fifth powers of their digits.
 
-(use '[util :only (digits pow)])
+(ns p030
+  (:require [util :refer [digits pow]]))
 
 (defn sum-of-5th-power-of-digits [n]
   (->> (digits n)
@@ -14,4 +15,5 @@
        (filter #(= % (sum-of-5th-power-of-digits %)))
        (apply +)))
 
-(time (println (p030)))
+(defn solve []
+  (time (println (p030))))
