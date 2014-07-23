@@ -1,6 +1,8 @@
 ;; #002
 ;; sum of the even-valued terms of fibonacci sequence <= 4,000,000
 
+(ns p002)
+
 (defn fibo [[a b]] [b (+ a b)])
 
 (defn p002 []
@@ -11,4 +13,5 @@
          (filter even?)
          (apply +))))
 
-(time (println (p002)))
+(defn solve []
+  (time (println (p002))))

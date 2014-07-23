@@ -1,5 +1,6 @@
 ;; #001
 ;; sum of all multiples of 3 and 5 below 1000.
+(ns p001)
 
 ; initial: brute force
 ; sufficiently fast when n is small, however, it will get slower when n get bigger.
@@ -8,7 +9,6 @@
        (filter (fn [n] (or (= 0 (mod n 3)) (= 0 (mod n 5)))))
        (apply +)))
 
-(time (println "brute force => " (p001-1)))
 
 ; improved: using formula, s(n) = n(n+1)/2
 ; much faster method. The size of n does not affect the calculation time.
@@ -22,4 +22,6 @@
         (+ (s n 5))
         (- (s n 15)))))
 
-(time (println "using formula => " (p001-2)))
+(defn solve []
+  (time (println "brute force => " (p001-1)))
+  (time (println "using formula => " (p001-2))))

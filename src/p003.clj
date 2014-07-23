@@ -1,7 +1,8 @@
 ;; #003
 ;; largest prime factor of 600851475143
 
-(use '[util :only (factorize)])
+(ns p003
+  (:require [util :refer [factorize]]))
 
 (def N 600851475143)
 
@@ -10,4 +11,5 @@
        (map (fn [[n e]] n))
        (apply max)))
 
-(time (println (p003)))
+(defn solve []
+  (time (println (p003))))

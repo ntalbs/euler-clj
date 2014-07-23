@@ -2,9 +2,11 @@
 ;; smallest positive number that is evenly divisible
 ;; by all of the numbers from 1 to 20
 
-(use '[util :only (lcm)])
+(ns p005
+  (require [util :refer [lcm]]))
 
 (defn p005 []
   (reduce lcm (range 1 21)))
 
-(time (println (p005)))
+(defn solve []
+  (time (println (p005))))

@@ -1,6 +1,8 @@
 ;; #004
 ;; largest palindrome made from the product of two 3-digit numbers
 
+(ns p004)
+
 (defn palindrome? [n]
   (= (str n) (apply str (reverse (str n)))))
 
@@ -10,7 +12,6 @@
        (filter palindrome?)
        (apply max)))
 
-(time (println "initial => " (p004-1)))
 
 ; improved
 ; P = ab = 100000x + 10000y + 1000z + 100z + 10y + x
@@ -24,4 +25,6 @@
        (filter palindrome?)
        (apply max)))
 
-(time (println "improved => " (p004-2)))
+(defn solve []
+  (time (println "initial => " (p004-1)))
+  (time (println "improved => " (p004-2))))
