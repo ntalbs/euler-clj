@@ -1,11 +1,13 @@
 ;; #020
 ;; sum of the digits in the number 100!
 
-(use '[util :only [digits factorial]])
+(ns p020
+  (:require [util :refer [digits factorial]]))
 
 (defn p020 []
   (->> (factorial 100)
        digits
        (apply +)))
 
-(time (println (p020)))
+(defn solve []
+  (time (println (p020))))

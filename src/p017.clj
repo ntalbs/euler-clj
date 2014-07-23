@@ -2,6 +2,8 @@
 ;; If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words,
 ;; how many letters would be used?
 
+(ns p017)
+
 (def one2nineteen
   ["" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten"
    "eleven" "twelve" "thirteen" "fourteen" "fifteen"
@@ -43,4 +45,5 @@
        (filter #(not= % \space))
        count))
 
-(time (println (p017)))
+(defn solve []
+  (time (println (p017))))

@@ -1,5 +1,7 @@
 ;; #014
 
+(ns p014)
+
 (defn x [n]
   (loop [n n acc []]
     (if (= 1 n)
@@ -14,4 +16,5 @@
        (map (fn [n] [n (count (x n))]))
        (apply max-key (fn [[n cnt]] cnt))))
 
-(time (println (p014)))
+(defn solve []
+  (time (println (p014))))

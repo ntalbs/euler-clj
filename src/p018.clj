@@ -2,6 +2,8 @@
 ;; maximum total from top to bottom of the triangle
 ;; Refer to #067.
 
+(ns p018)
+
 (def triangle
   (reverse
    [[75]
@@ -26,4 +28,5 @@
 (defn p018 []
   (find-max triangle))
 
-(time (println (p018)))
+(defn solve []
+  (time (println (p018))))

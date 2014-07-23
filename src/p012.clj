@@ -1,7 +1,8 @@
 ;; #012
 ;; What is the value of the first triangle number to have over five hundred divisors?
 
-(use '[util :only [factorize]])
+(ns p012
+  (:require [util :refer [factorize]]))
 
 (defn d
   "Returns the number of divisors of n.
@@ -22,4 +23,6 @@
        (drop-while (fn [n] (<= (d n) 500)))
        first))
 
-(time (println (p012)))
+;; too slow. need to improve.
+(defn solve []
+  (time (println (p012))))
