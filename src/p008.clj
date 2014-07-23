@@ -1,6 +1,8 @@
 ;; #008
 ;; greatest product of five consective digits in the 1000-digit number.
 
+(ns p008)
+
 (def s (str "73167176531330624919225119674426574742355349194934"
             "96983520312774506326239578318016984801869478851843"
             "85861560789112949495459501737958331952853208805511"
@@ -28,4 +30,5 @@
        (map (fn [l] (apply * l)))
        (reduce max)))
 
-(time (println (p008)))
+(defn solve []
+  (time (println (p008))))

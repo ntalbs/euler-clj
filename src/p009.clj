@@ -3,6 +3,8 @@
 ;; Find the product abc.
 
 ; initial: fairly fast when a+b+c is small, but not usable when a+b+c is large.
+(ns p009)
+
 (defn p009 []
   (first (for [a (range 1 1000)
                b (range a 1000)
@@ -10,6 +12,7 @@
                :when (= (+ (* a a) (* b b)) (* c c))]
            (* a b c))))
 
-(time (println (p009)))
+(defn solve []
+  (time (println (p009))))
 
 ; improved: TODO
