@@ -3,8 +3,9 @@
 ;; in the same direction (up, down, left, right, or diagonally)
 ;; in the 20x20 grid?
 
-(use '[util :only (parse-int)]
-     '[clojure.string :only (split)])
+(ns p011
+  (:require [util :refer (parse-int)]
+            [clojure.string :refer (split)]))
 
 (def data
   ["08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08"
@@ -68,4 +69,5 @@
                      diagonal-products-lt2rb
                      diagonal-products-rt2lb)))
 
-(time (println (p011)))
+(defn solve []
+  (time (println (p011))))
