@@ -1,6 +1,7 @@
 ;; #040
 
-(use '[util :only (digits pow)])
+(ns p040
+  (:require [util :refer [digits pow]]))
 
 (def ds (mapcat digits (iterate inc 1)))
 
@@ -13,4 +14,5 @@
        (map #(nth ds (dec %)))
        (apply *)))
 
-(time (println (p040)))
+(defn solve []
+  (time (println (p040))))

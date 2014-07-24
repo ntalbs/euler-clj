@@ -1,6 +1,7 @@
 ;; #036
 
-(require '[clojure.string :only (reverse) :as s])
+(ns p036
+  (:require [clojure.string :as s]))
 
 (defn binstr [n]
   (Integer/toBinaryString n))
@@ -19,4 +20,5 @@
        (filter (fn [n] (and (dec-palindromic? n) (bin-palindromic? n))))
        (apply +)))
 
-(time (println (p036)))
+(defn solve []
+  (time (println (p036))))

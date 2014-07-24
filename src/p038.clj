@@ -1,7 +1,9 @@
 ;; #038
-;; What is the largest 1 to 9 pandigital 9-digit number 
+;; What is the largest 1 to 9 pandigital 9-digit number
 ;; that can be formed as the concatenated product of an integer
 ;; with (1,2, ... , n) where n > 1?
+
+(ns p038)
 
 (defn pandigital? [sn]
   (= "123456789" (apply str (sort sn))))
@@ -22,4 +24,5 @@
        (drop-while #(not (pandigital? %)))
        first))
 
-(time (println (p038)))
+(defn solve []
+  (time (println (p038))))

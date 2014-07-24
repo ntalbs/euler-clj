@@ -1,7 +1,8 @@
 ;; #039
 ;; Refer to http://en.wikipedia.org/wiki/Pythagorean_triple
 
-(use '[util :only (gcd)])
+(ns p039
+  (:require [util :refer (gcd)]))
 
 (defn triple
   "Returns a pythagorian triple for given m, n with m > n."
@@ -21,4 +22,5 @@
        (group-by (fn [[a b c]] (+ a b c)))
        (apply max-key (fn [[p v]] (count v)))))
 
-(time (println (p039 1000)))
+(defn solve []
+  (time (println (p039 1000))))

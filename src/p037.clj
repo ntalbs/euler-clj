@@ -2,8 +2,9 @@
 ;; Find the sum of the only eleven primes
 ;; that are both truncatable from left to right and right to left.
 
-(use '[clojure.contrib.lazy-seqs :only [primes]]
-     '[util :only [parse-int prime? digits]])
+(ns p037
+  (:require [clojure.contrib.lazy-seqs :refer [primes]]
+            [util :refer [parse-int prime? digits]]))
 
 (defn to-int [digits]
   (parse-int (apply str digits)))
@@ -27,4 +28,5 @@
        (take 11)
        (apply +)))
 
-(time (println (p037)))
+(defn solve []
+  (time (println (p037))))
