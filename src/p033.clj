@@ -1,5 +1,7 @@
 ;; #033
 
+(ns p033)
+
 (defn decomp-num [n] {:pre [(<= 10 n 99)]}
   [(quot n 10) (rem n 10)])
 
@@ -23,4 +25,5 @@
           (map (fn [[n d]] (/ n d))
                (filter (fn [[n d]] (= (/ n d) (st-cancel [n d]))) rs))))
 
-(time (println (p033)))
+(defn solve []
+  (time (println (p033))))

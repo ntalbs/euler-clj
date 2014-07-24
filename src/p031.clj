@@ -1,6 +1,8 @@
 ;; #031
 ;; SICP s1.2.2, p50 (Korean Ed.)
 
+(ns p031)
+
 (defn first-denomination [kinds-of-coins]
   (cond (= kinds-of-coins 1) 1
         (= kinds-of-coins 2) 2
@@ -20,4 +22,5 @@
 (defn count-change [amount]
   (cc amount 8))
 
-(time (println (count-change 200)))
+(defn solve []
+  (time (println (count-change 200))))

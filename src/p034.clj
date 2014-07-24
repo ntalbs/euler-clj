@@ -1,7 +1,8 @@
 ;; #034
 ;; Find the sum of all numbers which are equal to the sum of the factorial of their digits.
 
-(use '[util :only (digits factorial)])
+(ns p034
+  (:require [util :refer [digits factorial]]))
 
 (defn check [n]
   (= n
@@ -19,4 +20,5 @@
        (take 2)
        (apply +)))
 
-(time (println (p034)))
+(defn solve []
+  (time (println (p034))))

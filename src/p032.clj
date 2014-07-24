@@ -7,7 +7,8 @@
 ;; 2) possible pairs of (a,b)'s number of digits are (1,4), (2,3).
 ;;    (3,2) and (4,1) are symmetric and don't need to investigate.
 
-(use '[clojure.math.combinatorics :only (permutations combinations)])
+(ns p032
+  (:require [clojure.math.combinatorics :refer [permutations combinations]]))
 
 (defn to-int [v]
   (Integer/parseInt (apply str v)))
@@ -29,4 +30,5 @@
        (into #{})
        (apply +)))
 
-(time (println (p032)))
+(defn solve []
+  (time (println (p032))))
