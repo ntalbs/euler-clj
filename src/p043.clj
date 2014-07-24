@@ -1,6 +1,7 @@
 ;; #043
 
-(use '[clojure.math.combinatorics :only (permutations)])
+(ns p043
+  (:require [clojure.math.combinatorics :refer [permutations]]))
 
 (defn check [ds]
   "Returns the number whose digits are ds if the number satisfies the condition.
@@ -20,4 +21,5 @@
        (apply +)))
 
 ; Takes too long. Need to be improved.
-(time (println (p043)))
+(defn solve []
+  (time (println (p043))))

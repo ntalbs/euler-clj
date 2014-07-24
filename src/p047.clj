@@ -1,6 +1,7 @@
 ;; #047
 
-(use '[util :only (factorize)])
+(ns p047
+  (:require [util :refer [factorize]]))
 
 (defn count-prime-factor [n]
   (count (factorize n)))
@@ -12,4 +13,5 @@
        first
        first))
 
-(time (println (p047)))
+(defn solve []
+  (time (println (p047))))

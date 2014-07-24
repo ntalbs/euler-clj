@@ -1,8 +1,9 @@
 ;; #046
 
-(use '[clojure.contrib.lazy-seqs :only (primes)]
-     '[clojure.set :only (difference)]
-     '[util :only (prime?)])
+(ns p046
+  (:require [clojure.contrib.lazy-seqs :refer [primes]]
+            [clojure.set :refer [difference]]
+            [util :refer [prime?]]))
 
 (def limit 10000)
 
@@ -19,7 +20,5 @@
 (defn p046 []
   (apply min (difference odd-composite-nums goldbach-nums)))
 
-(time (println (p046)))
-
-
-       
+(defn solve []
+  (time (println (p046))))

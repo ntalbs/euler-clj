@@ -1,7 +1,8 @@
 ;; #045
 ;; Find the next triangle number that is also pentagonal and hexagonal.
 
-(use '[util :only (perfect-square?)])
+(ns p045
+  (:require [util :refer [perfect-square?]]))
 
 ; T(2n-1) = H(n), which means every H(n) is also a triangle number.
 ; So, check there exists a integer n that satisfies 3n^2-n-2h = 0
@@ -21,4 +22,5 @@
        (filter pentagonal?)
        first))
 
-(time (println (p045)))
+(defn solve []
+  (time (println (p045))))

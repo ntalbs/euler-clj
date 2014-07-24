@@ -1,8 +1,9 @@
 ;; #049
 
-(use '[clojure.contrib.lazy-seqs :only (primes)]
-     '[clojure.math.combinatorics :only (permutations)]
-     '[util :only (parse-int digits prime?)])
+(ns p049
+  (:require [clojure.contrib.lazy-seqs :refer [primes]]
+            [clojure.math.combinatorics :refer [permutations]]
+            [util :refer [parse-int digits prime?]]))
 
 (def four-digits-primes
   (->> primes
@@ -41,4 +42,5 @@
 ; don't find 1487, 4817, 8147.
 ; This is just a luck.
 
-(time (println (p049)))
+(defn solve []
+  (time (println (p049))))

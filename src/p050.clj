@@ -1,9 +1,10 @@
 ;; #050
-;; Which prime, below one-million, can be written 
+;; Which prime, below one-million, can be written
 ;; as the sum of the most consecutive primes?
 
-(use '[clojure.contrib.lazy-seqs :only (primes)]
-     '[util :only (prime?)])
+(ns p050
+  (:require [clojure.contrib.lazy-seqs :refer [primes]]
+            [util :refer [prime?]]))
 
 (def csp "cumulative sums of primes"
   (->> (reductions + primes)
@@ -16,4 +17,5 @@
        (filter prime?)
        (apply max)))
 
-(time (println (p050)))
+(defn solve []
+  (time (println (p050))))

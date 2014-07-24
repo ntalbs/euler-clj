@@ -1,5 +1,7 @@
 ;; #044
 
+(ns p044)
+
 (defn p
   "Returns a n-th pentagonal number. P(n) = n (3n−1)/2"
   [n]
@@ -11,13 +13,6 @@
              (map #(p %))
              (into #{})))
 
-(defn pentagonal? [n]
-  (ps n))
-
-(defn pentagonal? [x]
-  
-
-
 ; 근데 답이 나오네...
 (defn p044 []
   (->> (for [i (range 1 upper) j (range 1 i)
@@ -26,4 +21,5 @@
          (- (p i) (p j)))
        (take 10)))
 
-(time (println (p044)))
+(defn solve []
+  (time (println (p044))))

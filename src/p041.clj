@@ -1,7 +1,8 @@
 ;; #041
 
-(use '[util :only (parse-int prime?)]
-     '[clojure.contrib.combinatorics :only (permutations)])
+(ns p041
+  (:require [util :refer [parse-int prime?]]
+            [clojure.contrib.combinatorics :refer [permutations]]))
 
 (def ds (range 1 10))
 
@@ -16,6 +17,7 @@
                 (map #(range 1 (inc %)))
                 (map investigate)
                 (drop-while empty?)
-                (take 1))))
+                first)))
 
-(time (println (p041)))
+(defn solve []
+  (time (println (p041))))

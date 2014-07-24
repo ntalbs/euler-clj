@@ -1,5 +1,7 @@
 ;; #042
 
+(ns p042)
+
 (defn t [n]
   (-> (+ n 1) (* n) (/ 2)))
 
@@ -21,4 +23,5 @@
        (filter triangle-number?)
        count))
 
-(time (println (p042)))
+(defn solve []
+  (time (println (p042))))
