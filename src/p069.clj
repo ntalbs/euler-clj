@@ -1,11 +1,13 @@
 ;; #069
 ;; Find the value of n  1,000,000 for which n/φ(n) is a maximum.
 
-(use '[clojure.contrib.lazy-seqs :only (primes)])
+(ns p069
+  (:require [clojure.contrib.lazy-seqs :refer (primes)]))
 
 (defn p069 []
   (->> (reductions * primes)
        (take-while #(< % 1000000))
        last))
 
-(time (println (p069)))
+(defn solve []
+  (time (println (p069))))

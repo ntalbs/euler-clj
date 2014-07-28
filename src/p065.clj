@@ -1,6 +1,7 @@
 ;; #065
 
-(use '[util :only (digits)])
+(ns p065
+  (:require [util :refer (digits)]))
 
 (defn xs [n]
   "a100 a99 a98 ... a0"
@@ -17,4 +18,5 @@
        digits
        (apply +)))
 
-(time (println (p065)))
+(defn solve []
+  (time (println (p065))))

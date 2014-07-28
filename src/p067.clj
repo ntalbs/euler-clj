@@ -1,8 +1,9 @@
 ;; #067
 ;; Basically the same as #018.
 
-(use '[util :only [parse-int]]
-     '[clojure.string :only [split]])
+(ns p067
+  (:require [util :refer [parse-int]]
+            [clojure.string :refer [split]]))
 
 (def triangle
   (map (fn [s] (map parse-int (split s #" ")))
@@ -14,4 +15,5 @@
 (defn p067 []
   (first (find-max (reverse triangle))))
 
-(time (println (p067)))
+(defn solve []
+  (time (println (p067))))

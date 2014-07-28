@@ -1,8 +1,9 @@
 ;; #062
 ;; Find the smallest cube for which exactly five permutations of its digits are cube.
 
-(use '[clojure.contrib.combinatorics :only (permutations)]
-     '[util :only (digits)])
+(ns p062
+  (:require [clojure.contrib.combinatorics :refer (permutations)]
+            [util :refer (digits)]))
 
 (def cubics
   (->> (iterate inc 1)
@@ -19,5 +20,5 @@
        (apply min)))
 
 ; check for first 10,000 cubics
-(time (println (p062 10000)))
-
+(defn solve []
+  (time (println (p062 10000))))

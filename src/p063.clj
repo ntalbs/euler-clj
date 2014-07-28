@@ -1,6 +1,8 @@
 ;; #063
 ;; How many n-digit positive integers exist which are also an nth power?
 
+(ns p063)
+
 (defn power [x n] (apply *' (repeat n x)))
 (defn count-digit [x] (inc (int (Math/log10 x))))
 
@@ -25,4 +27,5 @@
        (mapcat n-digits-and-nth-power)
        count))
 
-(time (println (p063)))
+(defn solve []
+  (time (println (p063))))
