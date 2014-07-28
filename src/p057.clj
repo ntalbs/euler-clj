@@ -1,5 +1,7 @@
 ;; #057
 
+(ns p057)
+
 (def a (+ 1 (/ 1 2)))
 
 (defn conv [a]
@@ -14,4 +16,5 @@
        (filter (fn [r] (> (digit-cnt (numerator r)) (digit-cnt (denominator r)))))
        count))
 
-(time (println (p057)))
+(defn solve []
+  (time (println (p057))))

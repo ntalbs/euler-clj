@@ -1,7 +1,8 @@
 ;; #059
 
-(use '[util :only [parse-int]]
-     '[clojure.string :only [split trim]])
+(ns p059
+  (:require [util :refer [parse-int]]
+            [clojure.string :refer [split trim]]))
 
 (def encrypted-message
   (->> (split (slurp "data/cipher1.txt") #",")
@@ -28,4 +29,5 @@
        (map int)
        (apply +)))
 
-(time (println (p059)))
+(defn solve []
+  (time (println (p059))))

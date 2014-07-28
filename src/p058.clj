@@ -1,6 +1,7 @@
 ;; #058
 
-(use '[util :only (prime?)])
+(ns p058
+  (:require [util :refer (prime?)]))
 
 (defn square [n] (* n n))
 
@@ -30,4 +31,5 @@
        (drop-while (fn [m] (>= (:r m) 0.1)))
        (first)))
 
-(time (println (p058)))
+(defn solve []
+  (time (println (p058))))

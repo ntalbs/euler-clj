@@ -1,6 +1,7 @@
 ;; #056
 
-(use '[util :only (pow digits)])
+(ns p056
+  (:require [util :refer (pow digits)]))
 
 (defn p056 []
   (apply max
@@ -9,4 +10,5 @@
                 (digits)
                 (apply +)))))
 
-(time (println (p056)))
+(defn solve []
+  (time (println (p056))))
