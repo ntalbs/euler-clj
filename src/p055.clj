@@ -1,6 +1,8 @@
 ;; #055
 ;; How many Lychrel numbers are there below ten-thousand?
 
+(ns p055)
+
 (defn reverse-num [n]
   (bigint (clojure.string/reverse (str n))))
 
@@ -21,4 +23,5 @@
        (filter lychrel?)
        count))
 
-(time (println (p055)))
+(defn solve []
+  (time (println (p055))))

@@ -1,8 +1,9 @@
 ;; #052
-;; Find the smallest positive integer, x, 
+;; Find the smallest positive integer, x,
 ;; such that 2x, 3x, 4x, 5x, and 6x, contain the same digits.
 
-(use '[util :only (digits)])
+(ns p052
+  (:require [util :refer [digits]]))
 
 (defn check [v]
   (->> (map digits v)
@@ -15,4 +16,5 @@
        (drop-while #(not (check %)))
        first))
 
-(time (println (p052)))
+(defn solve []
+  (time (println (p052))))

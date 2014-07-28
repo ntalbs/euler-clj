@@ -1,8 +1,9 @@
 ;; #053
-;; How many, not necessarily distinct, values of C(n,r), 
+;; How many, not necessarily distinct, values of C(n,r),
 ;; for 1 ≤ n ≤ 100, are greater than one-million?
 
-(use '[util :only (factorial)])
+(ns p053
+  (:require [util :refer [factorial]]))
 
 (defn c [n r]
   (/ (factorial n) (*' (factorial r) (factorial (- n r)))))
@@ -12,4 +13,5 @@
        (filter #(>= % 1000000))
        count))
 
-(time (println (p053)))
+(defn solve []
+  (time (println (p053))))

@@ -1,5 +1,7 @@
 ;; #054
 
+(ns p054)
+
 (def numbers "A23456789TJQKA")
 
 (def ranks
@@ -110,4 +112,5 @@
        :p1
        count))
 
-(time (println (p054)))
+(defn solve []
+  (time (println (p054))))
