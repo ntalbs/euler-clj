@@ -1,6 +1,7 @@
 ;; #089
 
-(require '[clojure.string :as str])
+(ns p089
+  (:require [clojure.string :as str]))
 
 (def romans (str/split (slurp "data/roman.txt") #"\r\n"))
 
@@ -22,4 +23,5 @@
         cnt1 (count-chars (map shorten romans))]
     (- cnt0 cnt1)))
 
-(time (println (p089)))
+(defn solve []
+  (time (println (p089))))

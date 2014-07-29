@@ -1,6 +1,7 @@
 ;; #081
 
-(use '[util :only [parse-int]])
+(ns p081
+  (:require [util :refer [parse-int]]))
 
 (def m
   (->> (clojure.string/split (slurp "data/matrix.txt") #"\r\n")
@@ -33,4 +34,5 @@
        (reduce min-sum)
        first))
 
-(time (println (p081 m)))
+(defn solve []
+  (time (println (p081 m))))
