@@ -1,6 +1,7 @@
 ;; #075
 
-(use '[util :only [gcd]])
+(ns p075
+  (:require [util :refer [gcd]]))
 
 (def l-max 1500000)                     ;maximum length of wire
 (def limit (int (Math/sqrt l-max)))
@@ -19,4 +20,5 @@
        (filter (fn [[_ list]] (= 1 (count list))))
        count))
 
-(time (println (p075)))
+(defn solve []
+  (time (println (p075))))

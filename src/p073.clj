@@ -1,6 +1,7 @@
 ;; #073
 
-(use '[util :only (gcd)])
+(ns p073
+  (:require [util :refer (gcd)]))
 
 (defn reduced-proper-fractions [limit]
   (for [d (range 3 (inc limit)) n (range (int (/ d 3)) (inc (int (/ d 2))))
@@ -11,4 +12,5 @@
 (defn p073 []
   (count (reduced-proper-fractions 12000)))
 
-(time (println (p073)))
+(defn solve []
+  (time (println (p073))))

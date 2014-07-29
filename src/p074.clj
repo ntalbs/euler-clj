@@ -1,6 +1,7 @@
 ;; #074
 
-(use '[util :only (digits factorial)])
+(ns p074
+  (:require [util :refer (digits factorial)]))
 
 (defn sum-of-factorial [n]
   (->> (digits n)
@@ -21,4 +22,5 @@
        count))
 
 ; Takes about 25 secs. Need to be improved.
-(time (println (p074)))
+(defn solve []
+  (time (println (p074))))
