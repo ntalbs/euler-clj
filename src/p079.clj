@@ -1,7 +1,8 @@
 ;; #079
 
-(require '[clojure.set :as set])
-(use '[util :only (parse-int digits)])
+(ns p079
+  (:require [clojure.set :as set]
+            [util :refer (parse-int digits)]))
 
 (def keylog
   (->> (clojure.string/split (slurp "data/keylog.txt") #"\r\n")
@@ -30,4 +31,5 @@
   (apply str
          (find-key pairs [])))
 
-(time (println (p079)))
+(defn solve []
+  (time (println (p079))))

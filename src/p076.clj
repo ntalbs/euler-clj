@@ -3,6 +3,8 @@
 ;; http://www.programminglogic.com/integer-partition-algorithm/
 ;; http://stackoverflow.com/questions/14053885/integer-partition-algorithm-and-recursion
 
+(ns p076)
+
 (defn p [n k]
   (cond (= k 0) 0
         (= n 0) 1
@@ -15,4 +17,5 @@
 (defn p076 []
   (p 100 99))
 
-(time (println (p076)))
+(defn solve []
+  (time (println (p076))))
