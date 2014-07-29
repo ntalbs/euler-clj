@@ -1,5 +1,7 @@
 ;; #091
 
+(ns p091)
+
 (def LIMIT 50)
 
 (def points
@@ -32,4 +34,5 @@
 (defn p091 []
   (/ (count right-triangles) 2))
 
-(time (println (p091)))
+(defn solve []
+  (time (println (p091))))

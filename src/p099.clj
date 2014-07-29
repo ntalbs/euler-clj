@@ -1,7 +1,8 @@
 ;; #099
 
-(use '[util :only [parse-int]]
-     '[clojure.string :only [split]])
+(ns p099
+  (:require [util :refer [parse-int]]
+            [clojure.string :refer [split]]))
 
 (def log-vals
   (->> (map (fn [s] (split s #",")) (split (slurp "data/base_exp.txt") #"\r\n"))
@@ -12,4 +13,5 @@
 (defn p099 []
   (+ 1 (first (apply max-key (fn [[i v]] v) log-vals)))) ; +1, since log-vals index is zero-based
 
-(time (println (p099)))
+(defn solve []
+  (time (println (p099))))
