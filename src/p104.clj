@@ -1,6 +1,7 @@
 ;; #104
 
-(use '[util :only [parse-int digits pow]])
+(ns p104
+  (:require [util :refer [parse-int digits pow]]))
 
 (defn fibo [[a b]] [b (+' a b)])
 
@@ -24,4 +25,5 @@
                          (not-pandigital? (first-9-digits a)))))
        ffirst))
 
-(time (println (p104)))
+(defn solve []
+  (time (println (p104))))

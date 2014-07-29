@@ -1,6 +1,7 @@
 ;; #112
 
-(use '[util :only [digits]])
+(ns p112
+  (:require [util :refer [digits]]))
 
 (defn bouncy? [n]
   (let [ds (digits n)]
@@ -16,4 +17,5 @@
        first
        second))
 
-(time (println (p112)))
+(defn solve []
+  (time (println (p112))))
