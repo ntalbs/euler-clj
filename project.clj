@@ -3,4 +3,5 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojure-contrib "1.2.0"]
                  [org.clojure/math.combinatorics "0.0.4"]]
+  :jvm-opts ["-XX:+UnlockCommercialFeatures" "-XX:+FlightRecorder" "-XX:FlightRecorderOptions=defaultrecording=true"]
 )
