@@ -1,4 +1,5 @@
-(ns util)
+(ns util
+  (:require [clojure.contrib.lazy-seqs :refer (primes)]))
 
 (defn parse-int [s]
   (Integer/parseInt s))
@@ -51,15 +52,14 @@
 (defn factorize
   "Returns a sequence of pairs of prime factor and its exponent."
   [n]
-  (loop [m n, i 2, acc []]
-    (let [m-is-prime (prime? m)] ; if m is prime, doesn't need to go further. just append it to acc.
-      (if (and (< i n) (not m-is-prime))
-        (if (= 0 (mod m i))
-          (recur (quot m i) i (conj acc i))
-          (recur m (inc i) acc))
-        (let [xs (->> (group-by identity (if m-is-prime (conj acc m) acc))
-                      (map (fn [[p ps]] [p (count ps)])))]
-          (if (empty? xs) (list [n 1]) xs))))))
+  (loop [n n, ps primes, acc []]
+    (let [p (first ps)]
+      (if (<= p n)
+        (if (= 0 (mod n p))
+          (recur (quot n p) ps (conj acc p))
+          (recur n (rest ps) acc))
+        (->> (group-by identity acc)
+             (map (fn [[k v]] [k (count v)])))))))
 
 (defn phi
   "Returns the number of the positive integers less than or equal to n
