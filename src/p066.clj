@@ -5,7 +5,9 @@
   (:require [util :refer [perfect-square?]]
             [p064 :refer [expand-continued-fraction]]))
 
-(defn solve-pells-equation [d]
+(defn find-fundamental-solution
+  "find the fundamental solution of pell's equation,  x^2 - dy^2 = 1"
+  [d]
   (let [cf (expand-continued-fraction d)
         as (lazy-cat cf (cycle (rest cf)))]
     (loop [h2 0, h1 1,
@@ -20,7 +22,7 @@
 (defn p066 []
   (->> (range 2 (inc 1000))
        (filter (complement perfect-square?))
-       (map (fn [d] [d (first (solve-pells-equation d))]))
+       (map (fn [d] [d (first (find-fundamental-solution d))]))
        (apply (partial max-key second))))
 
 (defn solve []
