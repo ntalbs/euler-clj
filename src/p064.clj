@@ -1,4 +1,3 @@
-;; #064
 ;; Continued fraction expansion
 ;; http://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Continued_fraction_expansion
 
