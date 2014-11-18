@@ -7,7 +7,7 @@
 
 (defn solve-pells-equation [d]
   (let [cf (expand-continued-fraction d)
-        as (lazy-cat cf (flatten (repeat (rest cf))))]
+        as (lazy-cat cf (cycle (rest cf)))]
     (loop [h2 0, h1 1,
            k2 1, k1 0,
            as as, n 0]
