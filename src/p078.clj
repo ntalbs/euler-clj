@@ -15,7 +15,7 @@
         (= n 3) 3
         :else (->> (interleave (iterate inc 1) (iterate dec -1))
                    (take-while #(<= 0 (- n (g %))))
-                   (map (fn [k] (*' (s (dec k)) (p (-' n (g k))))))
+                   (map (fn [k] (mod (* (s (dec k)) (p (- n (g k)))) 1000000)))
                    (apply +'))))
 
 (def p (memoize p))
@@ -24,7 +24,7 @@
   (->> (iterate inc 1)
        (map #(vector % (p %)))
        (drop-while #(not= 0 (mod (second %) 1000000)))
-       first))
+       ffirst))
 
 (defn solve []
   (time (p078)))
