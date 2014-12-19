@@ -73,11 +73,6 @@
           (map (fn [[p k]] (phi p k)))
           (apply *))))
 
-;; (defn proper-divisors
-;;   "Returns the proper divisors of n."
-;;   [n]
-;;   (filter (fn [x] (divisor? x n)) (range 1 (inc (quot n 2)))))
-
 (defn proper-divisors
   "Returns the proper divisors of n."
   [n]
