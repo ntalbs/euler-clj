@@ -6,17 +6,17 @@
 
 (def anagrams
   (->> words
-    (group-by (fn [w] (sort w)))
-    (filter (fn [[k ws]] (<= 2 (count ws))))
-    (map second)))
+       (group-by (fn [w] (sort w)))
+       (filter (fn [[k ws]] (<= 2 (count ws))))
+       (map second)))
 
 (def sqnums
   (->> (iterate inc 1)
-    (map #(* % %))
-    (take-while #(< (Math/log10 %) 9))
-    (group-by #(inc (int (Math/log10 %))))
-    (map (fn [[k vs]] [k (set vs)]))
-    (into {})))
+       (map #(* % %))
+       (take-while #(< (Math/log10 %) 9))
+       (group-by #(inc (int (Math/log10 %))))
+       (map (fn [[k vs]] [k (set vs)]))
+       (into {})))
 
 (defn digits-to-num [ds]
   (loop [ds (reverse ds) p 1 n 0]
@@ -26,10 +26,10 @@
 
 (defn c->n [w sqns]
   (->> (for [n sqns] (into {} (map vector w (digits n))))
-    (filter (fn [m]
-              (= 1 (->> (group-by second m)
-                     (map (fn [[k v]] (count v)))
-                     (apply max)))))))
+       (filter (fn [m]
+                 (= 1 (->> (group-by second m)
+                           (map (fn [[k v]] (count v)))
+                           (apply max)))))))
 
 (defn check [[w1 w2]]
   (let [sqns (sqnums (count w1))
@@ -39,9 +39,9 @@
 
 (defn p098 []
   (->> anagrams
-    (map #(check %))
-    (remove nil?)
-    (apply max)))
+       (map #(check %))
+       (remove nil?)
+       (apply max)))
 
 (defn solve []
   (time (println (p098))))

@@ -21,9 +21,9 @@
 
 (defn longest-chain [limit]
   (->> (range 2 (inc limit))
-    (map find-chain)
-    (remove nil?)
-    (apply max-key count)))
+       (map find-chain)
+       (remove nil?)
+       (apply max-key count)))
 
 (defn solve []
   (time (println (apply min (longest-chain limit)))))
