@@ -2,7 +2,8 @@
 ;; sum of all the primes below 2,000,000.
 
 (ns p010
-  (:require [util :refer [prime?]]))
+  (:require [util :refer [prime?]]
+            [clojure.contrib.lazy-seqs :refer [primes]]))
 
 ; initial: Takes around 10 secs. Too slow.
 (defn p010-1 [bound]
@@ -11,8 +12,6 @@
 
 
 ; second: Use clojure.contrib.lazy-seqs primes.
-(use '[clojure.contrib.lazy-seqs :only (primes)])
-
 (defn p010-2 [bound]
   (->> (take-while #(< % bound) primes)
        (reduce +)))
