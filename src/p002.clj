@@ -3,15 +3,15 @@
 
 (ns p002)
 
-(defn fibo [[a b]] [b (+ a b)])
+(def fibo
+  (->> (iterate (fn [[a b]] [b (+ a b)]) [1 1])
+       (map first)))
 
-(defn p002 []
-  (let [limit 4000000]
-    (->> (iterate fibo [1 1])
-         (take-while (fn [[a b]] (<= b limit)))
-         (map last)
-         (filter even?)
-         (apply +))))
+(defn p002 [limit]
+  (->> fibo
+       (filter even?)
+       (take-while #(<= % limit))
+       (apply +)))
 
 (defn solve []
-  (time (println (p002))))
+  (time (println (p002 4000000))))
