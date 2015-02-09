@@ -45,9 +45,9 @@
         (even? n) false
         (< n 9) true                    ; 5, 7
         (= 0 (mod n 3)) false
-        :else (empty? (take 1 (filter
-                               #(= 0 (mod n %))
-                               (range 3 (inc (int (Math/sqrt n))) 2))))))
+        :else (empty? (first (filter
+                              #(= 0 (mod n %))
+                              (range 3 (inc (int (Math/sqrt n))) 2))))))
 
 (defn factorize
   "Returns a sequence of pairs of prime factor and its exponent."
