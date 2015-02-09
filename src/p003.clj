@@ -8,7 +8,7 @@
 
 (defn p003 []
   (->> (factorize N)
-       (map (fn [[n e]] n))
+       (map first)
        (apply max)))
 
 (defn solve []
