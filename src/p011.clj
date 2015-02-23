@@ -1,8 +1,3 @@
-;; #011
-;; What is the greatest product of four adjacent numbers
-;; in the same direction (up, down, left, right, or diagonally)
-;; in the 20x20 grid?
-
 (ns p011
   (:require [util :refer (parse-int)]
             [clojure.string :refer (split)]))
@@ -31,43 +26,29 @@
 
 (def m
   (->> (map (fn [s] (split s #"\s")) data)
-       (map (fn [l] (map #(parse-int %) l)))
-       (map vec)
-       vec))
+       (mapv (fn [l] (mapv #(parse-int %) l)))))
 
-(def horizontal-products
-  (flatten (map (fn [l] (map (partial apply *) (partition 4 1 l))) m)))
+(def horizontal m)
 
-(def vertical-products
-  (flatten (->> (for [i (range 20)]
-                  (map (fn [l] (nth l i)) m))
-                (map (fn [l] (map (partial apply *) (partition 4 1 l)))))))
+(def vertical (apply map list m))  ;transpose
 
-(defn pad-zero
-  "Pad lcnt zeros on the left side of l,
-   rcnt zeros on the right side of l, and returns the zero-padded vector."
-  [l lcnt rcnt]
-  (vec (concat (repeat lcnt 0) l (repeat rcnt 0))))
+(def diagonal
+  (let [rows (count m), cols (count (first m))]
+    (for [c (range (- (dec cols)) cols)]
+      (for [r (range 0 rows) :when (< -1 (+ c r) 20)]
+        (get-in m [r (+ r c)])))))
 
-(def diagonal-products-lt2rb
-  (let [m-zero-padded  (vec (for [i (range 20)]
-                              (pad-zero (m i) (- 20 i) i)))]
-    (flatten (->> (for [i (range 20)]
-                    (map (fn [l] (nth l i)) m-zero-padded))
-                  (map (fn [l] (map (partial apply *) (partition 4 1 l))))))))
-
-(def diagonal-products-rt2lb
-  (let [m-zero-padded  (vec (for [i (range 20)]
-                              (pad-zero (m i) i (- 20 i))))]
-    (flatten (->> (for [i (range 20)]
-                    (map (fn [l] (nth l i)) m-zero-padded))
-                  (map (fn [l] (map (partial apply *) (partition 4 1 l))))))))
+(def anti-diagonal
+  (let [rows (count m), cols (count (first m))]
+    (for [c (range 0 (* 2 cols))]
+      (for [r (range 0 rows) :when (< -1 (- c r) 20)]
+        (get-in m [r (- c r)])))))
 
 (defn p011 []
-  (apply max (concat horizontal-products
-                     vertical-products
-                     diagonal-products-lt2rb
-                     diagonal-products-rt2lb)))
+  (->> (concat horizontal vertical diagonal anti-diagonal)
+       (mapcat #(partition 4 1 %))
+       (map #(apply * %))
+       (apply max)))
 
 (defn solve []
   (time (println (p011))))
