@@ -34,13 +34,13 @@
 
 (def diagonal
   (let [rows (count m), cols (count (first m))]
-    (for [c (range (- (dec cols)) cols)]
+    (for [c (range (- rows) cols)]
       (for [r (range 0 rows) :when (< -1 (+ c r) 20)]
         (get-in m [r (+ r c)])))))
 
 (def anti-diagonal
   (let [rows (count m), cols (count (first m))]
-    (for [c (range 0 (* 2 cols))]
+    (for [c (range 0 (+ rows cols))]
       (for [r (range 0 rows) :when (< -1 (- c r) 20)]
         (get-in m [r (- c r)])))))
 
