@@ -12,17 +12,12 @@
        (map (fn [[b e]] (+ e 1)))
        (apply *)))
 
-(defn triangle-number
-  "Returns the n-th triangle number, n(n+1)/2."
-  [n]
-  (/ (* n (+ n 1)) 2))
+(def triangle-numbers (reductions + (iterate inc 1)))
 
 (defn p012 []
-  (->> (iterate inc 1)
-       (map triangle-number)
-       (drop-while (fn [n] (<= (d n) 500)))
+  (->> triangle-numbers
+       (drop-while #(< (d %) 500))
        first))
 
-;; too slow. need to improve.
 (defn solve []
   (time (println (p012))))
