@@ -19,10 +19,6 @@
            [i j w])
          (sort-by (fn [[_ _ w]] w)))))
 
-(def total-weight
-  (->> (map (fn [[_ _ w]] w) edges)
-       (apply +)))
-
 (def vertex-partition (map (comp set list) (range 40)))
 
 (defn partition-merge [part a b]
@@ -37,10 +33,10 @@
       [new (cons link tree)]
       [new tree])))
 
-(def tree (second (reduce add-link [vertex-partition '()] edges)))
-
 (defn p107 []
-  (let [weight (reduce + (map (fn[[_ _ x]] x) tree))]
+  (let [tree (second (reduce add-link [vertex-partition '()] edges))
+        weight (reduce + (map (fn[[_ _ x]] x) tree))
+        total-weight (reduce + (map (fn [[_ _ w]] w) edges))]
     (- total-weight weight)))
 
 (defn solve []
