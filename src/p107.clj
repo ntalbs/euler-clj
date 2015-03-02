@@ -1,3 +1,5 @@
+;; http://en.wikipedia.org/wiki/Kruskal's_algorithm
+;; http://en.wikipedia.org/wiki/Disjoint-set_data_structure
 ;; http://www.learningclojure.com/2013/09/kruskals-algorithm-for-minimal-spanning.html
 
 (ns p107)
@@ -19,25 +21,37 @@
            [i j w])
          (sort-by (fn [[_ _ w]] w)))))
 
-(def vertex-partition (map (comp set list) (range 40)))
+(def ds (map (comp set list) (range 40)))
 
-(defn partition-merge [part a b]
-  (conj (filter #(not (or (contains? % a)(contains? % b))) part)
-        (apply clojure.set/union
-               (concat (filter #(contains? % a) part)
-                       (filter #(contains? % b) part)))))
+(defn find-set
+  "find a subset that contains v in ds."
+  [ds v]
+  (first (filter #(contains? % v) ds)))
 
-(defn add-link [[partition tree] link]
-  (let [new (partition-merge partition (first link) (second link))]
-    (if (< (count new) (count partition))
-      [new (cons link tree)]
-      [new tree])))
+(defn union
+  "join two subsets into one."
+  [ds u v]
+  (let [s1 (find-set ds u), s2 (find-set ds v)]
+    (conj (remove #(or (contains? % u) (contains? % v)) ds)
+          (clojure.set/union s1 s2))))
+
+(defn add-link [[ds mst] edge]
+  (let [[u v _] edge]
+    (if (not= (find-set ds u) (find-set ds v))
+      [(union ds u v) (conj mst edge)]
+      [ds mst])))
+
+(defn kruskal [ds links]
+  (second (reduce add-link [ds []] links)))
+
+(defn sum-weight [edges]
+  (reduce + (map (fn [[_ _ w]] w) edges)))
 
 (defn p107 []
-  (let [tree (second (reduce add-link [vertex-partition '()] edges))
-        weight (reduce + (map (fn[[_ _ x]] x) tree))
-        total-weight (reduce + (map (fn [[_ _ w]] w) edges))]
-    (- total-weight weight)))
+  (let [mst (kruskal ds edges)
+        weight-mst (sum-weight mst)
+        weight-total (sum-weight edges)]
+    (- weight-total weight-mst)))
 
 (defn solve []
   (time (println (p107))))
