@@ -14,6 +14,7 @@
        (mapv #(mapv parse-weight %))))
 
 (def edges
+  "edges of graph order by its weight."
   (let [cnt (count network)]
     (->> (for [i (range cnt) j (range (inc i) cnt)
                :let [w (get-in network [i j])]
@@ -21,7 +22,9 @@
            [i j w])
          (sort-by (fn [[_ _ w]] w)))))
 
-(def ds (map (comp set list) (range 40)))
+(def ds
+  "singletons of vertexes."
+  (map (comp set list) (range 40)))
 
 (defn find-set
   "find a subset that contains v in ds."
@@ -35,7 +38,10 @@
     (conj (remove #(or (contains? % u) (contains? % v)) ds)
           (clojure.set/union s1 s2))))
 
-(defn add-link [[ds mst] edge]
+(defn add-link
+  "add edge to mst(minimal spanning tree)
+  if the edge isn't contained the subsets of each vertexes of the edge."
+  [[ds mst] edge]
   (let [[u v _] edge]
     (if (not= (find-set ds u) (find-set ds v))
       [(union ds u v) (conj mst edge)]
