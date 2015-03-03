@@ -27,11 +27,14 @@
           (lazy-cat ts (primitive-triplets more))))
   ([] (primitive-triplets ['(3 4 5)])))
 
+(defn side-sum-is-not [sum]
+  (fn [[a b c]] (not= sum (+ a b c))))
+
 (defn p009-2 []
   (->> (primitive-triplets)
        (mapcat (fn [[a b c]] (->> (for [k (range 100)] [(* k a) (* k b) (* k c)])
-                                  (drop-while (fn [[a b c]] (not= 1000 (+ a b c)))))))
-       (drop-while (fn [[a b c]] (not= 1000 (+ a b c))))
+                                  (drop-while (side-sum-is-not 1000)))))
+       (drop-while (side-sum-is-not 1000))
        (first)
        (apply *)))
 
