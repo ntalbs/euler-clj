@@ -14,7 +14,7 @@
 
 
 ;; using pythagorean triplets:
-;; http://en.wikipedia.org/wiki/Pythagorean_triple
+;; http://en.wikipedia.org/wiki/Pythagorean_triple#Parent.2Fchild_relationships
 
 (defn next-triplets [[a b c]]
   [(sort [(+ a (* -2 b) (* 2 c)) (+ (* 2 a) (- b) (* 2 c)) (+ (* 2 a) (* -2 b) (* 3 c))])
