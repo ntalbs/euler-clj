@@ -6,10 +6,7 @@
 
 (def N 600851475143)
 
-(defn p003 []
+(defn solve []
   (->> (factorize N)
        (map first)
        (apply max)))
-
-(defn solve []
-  (time (println (p003))))
