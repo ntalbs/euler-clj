@@ -5,8 +5,8 @@
 (ns p006)
 
 ; initial: brute force
-(defn p006-1 []
-  (let [s (range 1 101)
+(defn using-brute-force [n]
+  (let [s (range 1 (inc n))
         sum-of-sq (reduce + (map (fn [n] (* n n)) s))
         sq-of-sum (let [sum (reduce + s)]
                     (* sum sum))]
@@ -19,10 +19,13 @@
 (defn sq-of-sum [n]
   (let [s (/ (* n (+ n 1)) 2)]
     (* s s)))
+
 (defn sum-of-sq [n]
   (/ (* n (+ n 1) (+ (* 2 n) 1)) 6))
-(defn p006-2 [] (- (sq-of-sum 100) (sum-of-sq 100)))
+
+(defn using-formula [n]
+  (- (sq-of-sum n) (sum-of-sq n)))
 
 (defn solve []
-  (time (println "initial => " (p006-1)))
-  (time (println "improved => " (p006-2))))
+  (time (println "initial => " (using-brute-force 100)))
+  (time (println "improved => " (using-formula 100))))
