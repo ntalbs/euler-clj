@@ -1,11 +1,7 @@
-;; #009
-;; There exists exactly one Pythagorean triplet for which a+b+c=1000.
-;; Find the product abc.
-
 (ns p009)
 
 ;; brute force: fairly fast when a+b+c is small, but not usable when a+b+c is large.
-(defn p009-1 []
+(defn using-brute-force []
   (first (for [a (range 1 1000)
                b (range a 1000)
                c [(- 1000 a b)]
@@ -36,7 +32,7 @@
 (defn side-sum-is-not [sum]
   (fn [[a b c]] (not= sum (+ a b c))))
 
-(defn p009-2 []
+(defn using-formula []
   (->> (primitive-triplets)
        (mapcat (fn [[a b c]] (->> (for [k (range 100)] [(* k a) (* k b) (* k c)])
                                   (drop-while (side-sum-is-not 1000)))))
@@ -45,5 +41,5 @@
        (apply *)))
 
 (defn solve []
-  (time (println (p009-1)))
-  (time (println (p009-2))))
+  (time (println (using-brute-force)))
+  (time (println (using-formula))))
