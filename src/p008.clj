@@ -1,4 +1,3 @@
-;; #008
 ;; greatest product of five consective digits in the 1000-digit number.
 
 (ns p008)

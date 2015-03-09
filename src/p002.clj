@@ -1,4 +1,3 @@
-;; #002
 ;; sum of the even-valued terms of fibonacci sequence <= 4,000,000
 
 (ns p002)

@@ -1,4 +1,3 @@
-;; #003
 ;; largest prime factor of 600851475143
 
 (ns p003

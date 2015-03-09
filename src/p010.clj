@@ -1,4 +1,3 @@
-;; #010
 ;; sum of all the primes below 2,000,000.
 
 (ns p010

@@ -1,4 +1,3 @@
-;; #007
 ;; 10,001st prime number?
 
 (ns p007

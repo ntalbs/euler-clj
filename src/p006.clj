@@ -1,4 +1,3 @@
-;; #006
 ;; difference between the sum of squares of the first one hundred natural numbers
 ;; and the square of the sum
 
