@@ -2,10 +2,22 @@
 ;; 10,001st prime number?
 
 (ns p007
-  (:require [util :refer [prime?]]))
+  (:require [util :refer [prime?]]
+            [clojure.contrib.lazy-seqs :refer [primes]]))
 
-(defn p007 []
-  (first (drop 10000 (filter prime? (iterate inc 2)))))
+(def limit 10001)
+
+(defn using-pred []
+  (->> (iterate inc 2)
+       (filter prime?)
+       (drop (dec limit))
+       first))
+
+(defn using-seq []
+  (->> primes
+       (drop (dec limit))
+       first))
 
 (defn solve []
-  (time (println (p007))))
+  (time (println "using-pred => " (using-pred)))
+  (time (println "using-seq => " (using-seq))))
