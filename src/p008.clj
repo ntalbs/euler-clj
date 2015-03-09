@@ -26,12 +26,9 @@
 
 (defn to-int [c] (Character/digit c 10))
 
-(defn p008 []
+(defn solve []
   (->> s
        (map to-int)
        (partition 5 1)
        (map #(apply * %))
        (reduce max)))
-
-(defn solve []
-  (time (println (p008))))

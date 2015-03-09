@@ -5,17 +5,18 @@
   (:require [util :refer [prime?]]
             [clojure.contrib.lazy-seqs :refer [primes]]))
 
+(def limit 2000000)
+
 ; initial: Takes around 10 secs. Too slow.
-(defn p010-1 [bound]
-  (->> (filter prime? (range 2 (inc bound)))
+(defn using-pred []
+  (->> (filter prime? (range 2 (inc limit)))
        (reduce +)))
 
-
 ; second: Use clojure.contrib.lazy-seqs primes.
-(defn p010-2 [bound]
-  (->> (take-while #(< % bound) primes)
+(defn using-seq []
+  (->> (take-while #(< % limit) primes)
        (reduce +)))
 
 (defn solve []
-  (time (println (p010-1 2000000)))
-  (time (println (p010-2 2000000))))
+  (time (println (using-pred)))
+  (time (println (using-seq))))
