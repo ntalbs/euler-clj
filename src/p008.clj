@@ -25,9 +25,16 @@
 
 (defn to-int [c] (Character/digit c 10))
 
-(defn solve []
+(defn solve-kr []
   (->> s
        (map to-int)
        (partition 5 1)
+       (map #(apply * %))
+       (reduce max)))
+
+(defn solve-en []
+  (->> s
+       (map to-int)
+       (partition 13 1)
        (map #(apply * %))
        (reduce max)))
