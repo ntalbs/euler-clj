@@ -14,10 +14,7 @@
 
 (def triangle-numbers (reductions + (iterate inc 1)))
 
-(defn p012 []
+(defn solve []
   (->> triangle-numbers
        (drop-while #(< (d %) 500))
        first))
-
-(defn solve []
-  (time (println (p012))))

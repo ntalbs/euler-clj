@@ -44,11 +44,8 @@
       (for [r (range 0 rows) :when (< -1 (- c r) 20)]
         (get-in m [r (- c r)])))))
 
-(defn p011 []
+(defn solve []
   (->> (concat horizontal vertical diagonal anti-diagonal)
        (mapcat #(partition 4 1 %))
        (map #(apply * %))
        (apply max)))
-
-(defn solve []
-  (time (println (p011))))
