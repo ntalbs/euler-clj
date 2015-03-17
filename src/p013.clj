@@ -1,5 +1,3 @@
-;; #013
-
 (ns p013)
 
 (def nums [37107287533902102798797998220837590246510135740250
@@ -103,7 +101,37 @@
            20849603980134001723930671666823555245252804609722
            53503534226472524250874054075591789781264330331690])
 
-(defn solve []
+(defn solve1 []
   (-> (apply + nums)
       str
       (subs 0 10)))
+
+(defn- num->digits [n]
+  (loop [n n, acc '()]
+    (if (= n 0)
+      acc
+      (recur (quot n 10) (conj acc (int (rem n 10)))))))
+
+(defn- lpad [ds cnt]
+  (concat (repeat cnt 0) ds))
+
+(defn- add-digits [dv1 dv2]
+  (let [cnt1 (count dv1)
+        cnt2 (count dv2)
+        dv1 (if (< cnt1 cnt2) (lpad dv1 (- cnt2 cnt1)) dv1)
+        dv2 (if (< cnt1 cnt2) dv2 (lpad dv2 (- cnt1 cnt2)))
+        added (reverse (map + dv1 dv2))]
+    (->> (reduce (fn [ls x]
+                   (if (empty? ls)
+                     (list (quot x 10) (rem x 10))
+                     (let [d10 (quot (+ x (first ls)) 10), d1 (rem (+ x (first ls)) 10)]
+                       (conj (conj (rest ls) d1) d10))))
+                 '()
+                 added)
+         (drop-while #(zero? %)))))
+
+(defn solve2 []
+  (->> (map num->digits nums)
+       (reduce add-digits)
+       (take 10)
+       (apply str)))
