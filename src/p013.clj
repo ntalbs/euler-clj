@@ -121,11 +121,11 @@
         dv1 (if (< cnt1 cnt2) (lpad dv1 (- cnt2 cnt1)) dv1)
         dv2 (if (< cnt1 cnt2) dv2 (lpad dv2 (- cnt1 cnt2)))
         added (reverse (map + dv1 dv2))]
-    (->> (reduce (fn [ls x]
-                   (if (empty? ls)
+    (->> (reduce (fn [acc x]
+                   (if (empty? acc)
                      (list (quot x 10) (rem x 10))
-                     (let [d10 (quot (+ x (first ls)) 10), d1 (rem (+ x (first ls)) 10)]
-                       (conj (conj (rest ls) d1) d10))))
+                     (let [d10 (quot (+ x (first acc)) 10), d1 (rem (+ x (first acc)) 10)]
+                       (conj (conj (rest acc) d1) d10))))
                  '()
                  added)
          (drop-while #(zero? %)))))
