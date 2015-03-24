@@ -9,7 +9,7 @@
    Refer to http://mathschallenge.net/library/number/number_of_divisors"
   [n]
   (->> (factorize n)
-       (map (fn [[b e]] (+ e 1)))
+       (map (fn [[_ e]] (+ e 1)))
        (apply *)))
 
 (def triangle-numbers (reductions + (iterate inc 1)))
