@@ -1,13 +1,16 @@
-;; #016
-;; sum of digits of 2^1000
-
 (ns p016
-  (:require [util :refer [digits]]))
+  (:require [util :refer [pow digits add-digits]]))
 
-(defn p016 []
-  (->> (.pow (java.math.BigInteger. "2") 1000)
-       digits
+(defn solve1 []
+  (->> (pow 2 1000)
+       (digits)
        (apply +)))
 
-(defn solve []
-  (time (println (p016))))
+(defn twice-digits [x]
+  (add-digits x x))
+
+(defn solve2 []
+  (->> (iterate twice-digits [1])
+       (drop 1000)
+       first
+       (reduce +)))
