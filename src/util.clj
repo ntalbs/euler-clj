@@ -8,8 +8,9 @@
   "Retruns the list of digits of n."
   [n]
   (loop [n n acc '()]
-    (if (< n 10) (conj acc n)
-        (recur (quot n 10) (conj acc (mod n 10))))))
+    (if (= n 0)
+      acc
+      (recur (quot n 10) (conj acc (int (rem n 10)))))))
 
 (defn divisor?
   "Returns true if x is a divisor of n."
