@@ -106,12 +106,6 @@
       str
       (subs 0 10)))
 
-(defn- num->digits [n]
-  (loop [n n, acc '()]
-    (if (= n 0)
-      acc
-      (recur (quot n 10) (conj acc (int (rem n 10)))))))
-
 (defn- lpad [ds cnt]
   (concat (repeat cnt 0) ds))
 
@@ -131,7 +125,7 @@
          (drop-while #(zero? %)))))
 
 (defn solve2 []
-  (->> (map num->digits nums)
+  (->> (map digits nums)
        (reduce add-digits)
        (take 10)
        (apply str)))
