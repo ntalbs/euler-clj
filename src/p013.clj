@@ -1,4 +1,5 @@
-(ns p013)
+(ns p013
+  (:require [util :refer [digits add-digits]]))
 
 (def nums [37107287533902102798797998220837590246510135740250
            46376937677490009712648124896970078050417018260538
@@ -105,24 +106,6 @@
   (-> (apply + nums)
       str
       (subs 0 10)))
-
-(defn- lpad [ds cnt]
-  (concat (repeat cnt 0) ds))
-
-(defn- add-digits [dv1 dv2]
-  (let [cnt1 (count dv1)
-        cnt2 (count dv2)
-        dv1 (if (< cnt1 cnt2) (lpad dv1 (- cnt2 cnt1)) dv1)
-        dv2 (if (< cnt1 cnt2) dv2 (lpad dv2 (- cnt1 cnt2)))
-        added (reverse (map + dv1 dv2))]
-    (->> (reduce (fn [acc x]
-                   (if (empty? acc)
-                     (list (quot x 10) (rem x 10))
-                     (let [d10 (quot (+ x (first acc)) 10), d1 (rem (+ x (first acc)) 10)]
-                       (conj (conj (rest acc) d1) d10))))
-                 '()
-                 added)
-         (drop-while #(zero? %)))))
 
 (defn solve2 []
   (->> (map digits nums)
