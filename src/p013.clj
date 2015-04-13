@@ -1,5 +1,5 @@
 (ns p013
-  (:require [util :refer [digits add-digits]]))
+  (:require [util :refer [digits digits+]]))
 
 (def nums [37107287533902102798797998220837590246510135740250
            46376937677490009712648124896970078050417018260538
@@ -109,6 +109,6 @@
 
 (defn solve2 []
   (->> (map digits nums)
-       (reduce add-digits)
+       (reduce digits+)
        (take 10)
        (apply str)))
