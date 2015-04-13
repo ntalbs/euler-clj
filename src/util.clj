@@ -36,7 +36,9 @@
           (recur (list d10) (conj acc d1)))
         (recur (add-to-first rst d10) (conj acc d1))))))
 
-(defn- lpad [ds cnt]
+(defn- lpad
+  "Returns new seqence with cnt of 0 padded on the left."
+  [ds cnt]
   (concat (repeat cnt 0) ds))
 
 (defn digits+
