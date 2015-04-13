@@ -51,6 +51,11 @@
         added  (map + ds1 ds2)]
     (canonicalize-digits added)))
 
+(defn digits*
+  "Returns product of given digits ds and n."
+  [ds n]
+  (canonicalize-digits (map #(* % n) ds)))
+
 
 (defn divisor?
   "Returns true if x is a divisor of n."
