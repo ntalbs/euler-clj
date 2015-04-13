@@ -12,6 +12,30 @@
       acc
       (recur (quot n 10) (conj acc (int (rem n 10)))))))
 
+(defn- add-to-first
+  "Returns a new list with its first element is (+ x (first ls)). "
+  [ls x]
+  {:pre [(list? ls)]}
+  (let [fv (first ls)]
+    (if (nil? fv)
+      nil
+      (conj (rest ls) (+ fv x)))))
+
+(defn- canonicalize-digits
+  "Returns a canonicalized sequence of digits.
+  Canonicalized here means that every digit in the sequence is single digit."
+  [ds]
+  (loop [ds (reverse ds), acc '()]
+    (let [cur (first ds)
+          rst (rest ds)
+          d10 (quot cur 10)
+          d1 (rem cur 10)]
+      (if (empty? rst)
+        (if (= d10 0)
+          (conj acc d1)
+          (recur (list d10) (conj acc d1)))
+        (recur (add-to-first rst d10) (conj acc d1))))))
+
 (defn- lpad [ds cnt]
   (concat (repeat cnt 0) ds))
 
