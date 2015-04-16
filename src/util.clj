@@ -21,9 +21,9 @@
       nil
       (conj (rest ls) (+ fv x)))))
 
-(defn- canonicalize-digits
-  "Returns a canonicalized sequence of digits.
-  Canonicalized here means that every digit in the sequence is single digit."
+(defn- normailize-digits
+  "Returns a normailize sequence of digits.
+  Normailize here means that every digit in the sequence is single digit."
   [ds]
   (loop [ds (reverse ds), acc '()]
     (let [cur (first ds)
@@ -49,12 +49,12 @@
         ds1 (if (< cnt1 cnt2) (lpad ds1 (- cnt2 cnt1)) ds1)
         ds2 (if (< cnt1 cnt2) ds2 (lpad ds2 (- cnt1 cnt2)))
         added  (map + ds1 ds2)]
-    (canonicalize-digits added)))
+    (normailize-digits added)))
 
 (defn digits*
   "Returns product of given digits ds and n."
   [ds n]
-  (canonicalize-digits (map #(* % n) ds)))
+  (normailize-digits (map #(* % n) ds)))
 
 
 (defn divisor?
