@@ -1,7 +1,3 @@
-;; #018
-;; maximum total from top to bottom of the triangle
-;; Refer to #067.
-
 (ns p018)
 
 (def triangle
@@ -25,8 +21,5 @@
 (defn find-max [t]
   (reduce (fn [ls vs] (map max (map + ls vs) (map + (rest ls) vs))) t))
 
-(defn p018 []
-  (find-max triangle))
-
 (defn solve []
-  (time (println (p018))))
+  (find-max triangle))
