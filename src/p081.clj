@@ -5,8 +5,7 @@
 
 (def m
   (->> (clojure.string/split (slurp "data/matrix.txt") #"\r\n")
-       (map (fn [line] (vec (map parse-int (clojure.string/split line #",")))))
-       vec))
+       (mapv (fn [line] (mapv parse-int (clojure.string/split line #","))))))
 
 (defn t
   "returns the lists of positions of elemements in diagonal order
