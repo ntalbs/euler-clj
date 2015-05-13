@@ -18,10 +18,12 @@
          (filter #(= (.getDayOfWeek %) DayOfWeek/SUNDAY))
          (count))))
 
-(defn leap-year? [year]
-  (if (zero? (mod year 100))
-    (zero? (mod year 400))
-    (zero? (mod year 4))))
+(defn- divisible? [x n] (zero? (mod x n)))
+
+(defn- leap-year? [year]
+  (if (divisible? year 100)
+    (divisible? year 400)
+    (divisible? year 4)))
 
 (defn days-in-month [year month]
   (cond (#{1 3 5 7 8 10 12} month) 31
