@@ -26,6 +26,7 @@
     (divisible? year 4)))
 
 (defn days-in-month [year month]
+  {:pre [(<= 1 month 12)]}
   (cond (#{1 3 5 7 8 10 12} month) 31
         (#{4 6 9 11} month) 30
         (leap-year? year) 29
