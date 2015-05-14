@@ -32,13 +32,14 @@
         (leap-year? year) 29
         :else 28))
 
-  (let [last-day (days-in-month year month)]
 (defn- next-date [[year month dm dw]]
+  (let [last-day (days-in-month year month)
+        next-dw (fn [dw] (mod (inc dw) 7))]
     (if (< dm last-day)
-      [year month (inc dm) (mod (inc dw) 7)]
+      [year month (inc dm) (next-dw dw)]
       (if (< month 12)
-        [year (inc month) 1 (mod (inc dw) 7)]
-        [(inc year) 1 1 (mod (inc dw) 7)]))))
+        [year (inc month) 1 (next-dw dw)]
+        [(inc year) 1 1 (next-dw dw)]))))
 
 (defn solve3 []
   (->> (iterate next-date [1900 1 1 1])
