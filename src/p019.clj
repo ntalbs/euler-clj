@@ -25,15 +25,15 @@
     (divisible? year 400)
     (divisible? year 4)))
 
-(defn days-in-month [year month]
+(defn- days-in-month [year month]
   {:pre [(<= 1 month 12)]}
   (cond (#{1 3 5 7 8 10 12} month) 31
         (#{4 6 9 11} month) 30
         (leap-year? year) 29
         :else 28))
 
-(defn next-date [[year month dm dw]]
   (let [last-day (days-in-month year month)]
+(defn- next-date [[year month dm dw]]
     (if (< dm last-day)
       [year month (inc dm) (mod (inc dw) 7)]
       (if (< month 12)
