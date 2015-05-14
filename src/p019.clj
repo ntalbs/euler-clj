@@ -47,3 +47,22 @@
        (take-while (fn [[year _ _ _]] (<= year 2000)))
        (filter (fn [[_ _ dm dw]] (and (= 1 dm) (zero? dw))))
        (count)))
+
+(defn- next-month [[year month dm dw]]
+  (let [dw (mod (+ dw (days-in-month year month)) 7)]
+    (if (= month 12)
+      [(inc year) 1 1 dw]
+      [year (inc month) 1 dw])))
+
+(defn solve4 []
+  (->> (iterate next-month [1900 1 1 1])
+       (drop-while (fn [[year _ _ _]] (<= year 1900)))
+       (take-while (fn [[year _ _ _]] (<= year 2000)))
+       (filter (fn [[_ _ dm dw]] (and (= 1 dm) (zero? dw))))
+       (count)))
+
+(do
+  (time (print "1: " (solve1) "\t"))
+  (time (print "2: " (solve2) "\t"))
+  (time (print "3: " (solve3) "\t"))
+  (time (print "4: " (solve4) "\t")))
