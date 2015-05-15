@@ -90,6 +90,8 @@
   (init)
   (run 1000000))
 
+;; D1(16)과 R3(25)의 방문 확률의 차이가 크지 않아 1백만번을 돌려도 종종 D1이 이기는 경우가 있음
+;; 1백만번 돌리는 시뮬레이션을 10번 수행해서 많이 나오는 쪽으로 판단
 (defn solve []
   (->> (repeatedly 10 simulate)
        (group-by identity)
