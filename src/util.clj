@@ -56,7 +56,6 @@
   [ds n]
   (normailize-digits (map #(* % n) ds)))
 
-
 (defn divisor?
   "Returns true if x is a divisor of n."
   [x n] (zero? (rem n x)))
