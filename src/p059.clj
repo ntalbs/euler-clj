@@ -1,5 +1,3 @@
-;; #059
-
 (ns p059
   (:require [util :refer [parse-int]]
             [clojure.string :refer [split trim]]))

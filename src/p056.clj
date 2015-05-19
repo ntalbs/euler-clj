@@ -1,5 +1,3 @@
-;; #056
-
 (ns p056
   (:require [util :refer (pow digits)]))
 

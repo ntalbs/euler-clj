@@ -1,4 +1,3 @@
-;; #053
 ;; How many, not necessarily distinct, values of C(n,r),
 ;; for 1 ≤ n ≤ 100, are greater than one-million?
 

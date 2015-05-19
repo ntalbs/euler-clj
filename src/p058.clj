@@ -1,5 +1,3 @@
-;; #058
-
 (ns p058
   (:require [util :refer (prime?)]))
 

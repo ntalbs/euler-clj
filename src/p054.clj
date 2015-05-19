@@ -1,5 +1,3 @@
-;; #054
-
 (ns p054)
 
 (def numbers "A23456789TJQKA")

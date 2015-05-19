@@ -1,4 +1,3 @@
-;; #055
 ;; How many Lychrel numbers are there below ten-thousand?
 
 (ns p055)
