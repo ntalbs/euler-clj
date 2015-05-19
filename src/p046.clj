@@ -1,5 +1,3 @@
-;; #046
-
 (ns p046
   (:require [clojure.contrib.lazy-seqs :refer [primes]]
             [clojure.set :refer [difference]]

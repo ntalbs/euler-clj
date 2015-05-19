@@ -1,5 +1,3 @@
-;; #049
-
 (ns p049
   (:require [clojure.contrib.lazy-seqs :refer [primes]]
             [clojure.math.combinatorics :refer [permutations]]

@@ -1,5 +1,3 @@
-;; #043
-
 (ns p043
   (:require [clojure.math.combinatorics :refer [permutations]]))
 

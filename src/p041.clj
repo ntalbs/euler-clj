@@ -1,5 +1,3 @@
-;; #041
-
 (ns p041
   (:require [util :refer [parse-int prime?]]
             [clojure.contrib.combinatorics :refer [permutations]]))

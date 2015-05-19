@@ -1,5 +1,3 @@
-;; #047
-
 (ns p047
   (:require [util :refer [factorize]]))
 
