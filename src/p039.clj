@@ -1,4 +1,3 @@
-;; #039
 ;; Refer to http://en.wikipedia.org/wiki/Pythagorean_triple
 
 (ns p039

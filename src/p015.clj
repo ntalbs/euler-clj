@@ -1,4 +1,3 @@
-;; #015
 ;; number of routes through 20x20 grid
 
 (ns p015

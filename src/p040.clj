@@ -1,5 +1,3 @@
-;; #040
-
 (ns p040
   (:require [util :refer [digits pow]]))
 

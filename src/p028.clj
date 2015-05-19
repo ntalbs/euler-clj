@@ -1,5 +1,3 @@
-;; #028
-
 (ns p028)
 
 (defn square [n] (* n n))

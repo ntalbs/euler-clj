@@ -1,4 +1,3 @@
-;; #031
 ;; SICP s1.2.2, p50 (Korean Ed.)
 
 (ns p031)

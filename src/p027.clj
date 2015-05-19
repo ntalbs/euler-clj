@@ -1,5 +1,3 @@
-;; #027
-
 (ns p027
   (:require [util :refer [prime?]]))
 

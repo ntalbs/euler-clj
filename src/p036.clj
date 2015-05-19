@@ -1,5 +1,3 @@
-;; #036
-
 (ns p036
   (:require [clojure.string :as s]))
 

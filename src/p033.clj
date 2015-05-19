@@ -1,5 +1,3 @@
-;; #033
-
 (ns p033)
 
 (defn decomp-num [n] {:pre [(<= 10 n 99)]}
