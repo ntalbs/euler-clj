@@ -1,4 +1,3 @@
-;; #067
 ;; Basically the same as #018.
 
 (ns p067

@@ -1,5 +1,3 @@
-;; #061
-
 (ns p061
   (:require [util :refer (infix)]))
 

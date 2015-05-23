@@ -1,5 +1,3 @@
-;; #065
-
 (ns p065
   (:require [util :refer (digits)]))
 

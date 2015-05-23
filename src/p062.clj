@@ -1,4 +1,3 @@
-;; #062
 ;; Find the smallest cube for which exactly five permutations of its digits are cube.
 
 (ns p062
