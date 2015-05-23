@@ -1,5 +1,3 @@
-;; #079
-
 (ns p079
   (:require [clojure.set :as set]
             [util :refer (parse-int digits)]))

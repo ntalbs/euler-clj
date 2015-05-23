@@ -1,4 +1,3 @@
-;; #076
 ;; Refer to the following URLs:
 ;; http://www.programminglogic.com/integer-partition-algorithm/
 ;; http://stackoverflow.com/questions/14053885/integer-partition-algorithm-and-recursion

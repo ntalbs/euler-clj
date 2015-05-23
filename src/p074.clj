@@ -1,5 +1,3 @@
-;; #074
-
 (ns p074
   (:require [util :refer (digits factorial)]))
 

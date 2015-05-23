@@ -1,4 +1,3 @@
-;; #071
 ;; Farey Sequence: http://en.wikipedia.org/wiki/Farey_sequence
 ;; If a/b and c/d are neighbours in a Farey sequence, with a/b < c/d, then c/d - a/b = 1/bd.
 ;; This means bc - ad = 1.

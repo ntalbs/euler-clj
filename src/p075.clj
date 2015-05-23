@@ -1,5 +1,3 @@
-;; #075
-
 (ns p075
   (:require [util :refer [gcd]]))
 
