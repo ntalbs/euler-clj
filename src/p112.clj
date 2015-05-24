@@ -1,5 +1,3 @@
-;; #112
-
 (ns p112
   (:require [util :refer [digits]]))
 

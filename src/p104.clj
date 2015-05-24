@@ -1,5 +1,3 @@
-;; #104
-
 (ns p104
   (:require [util :refer [parse-int digits pow]]))
 
