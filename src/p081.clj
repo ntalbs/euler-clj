@@ -1,5 +1,3 @@
-;; #081
-
 (ns p081
   (:require [util :refer [parse-int]]))
 

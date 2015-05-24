@@ -1,5 +1,3 @@
-;; #089
-
 (ns p089
   (:require [clojure.string :as str]))
 

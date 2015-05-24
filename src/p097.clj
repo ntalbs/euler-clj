@@ -1,4 +1,3 @@
-;; #097
 ;; Find the last ten digits of 28433×2^7830457+1.
 
 (ns p097)
