@@ -78,6 +78,9 @@
   "Compute x^n."
   [x n] (reduce *' (repeat n x)))
 
+(defn- ceil [x]
+  (inc (int x)))
+
 (defn prime?
   "Returns true if n is prime."
   [n]
@@ -87,7 +90,7 @@
         (< n 9) true                    ; 5, 7
         (= 0 (mod n 3)) false
         :else (nil? (first (filter #(= 0 (mod n %))
-                                     (range 5 (inc (int (Math/sqrt n))) 2))))))
+                                     (range 5 (ceil (Math/sqrt n)) 2))))))
 
 (defn factorize
   "Returns a sequence of pairs of prime factor and its exponent."
@@ -120,7 +123,6 @@
 (defn proper-divisors
   "Returns the proper divisors of n."
   [n]
-  (let [bound (inc (int (Math/sqrt n)))]
     (conj (->> (range 2 bound)
                (mapcat (fn [i]
                          (if (divisor? i n)
@@ -129,6 +131,7 @@
                (filter (complement nil?))
                sort)
           1)))
+  (let [bound (ceil (Math/sqrt n))]
 
 (defn sum-of-proper-divisor
   "Returns the sum of n's proper divisors."
