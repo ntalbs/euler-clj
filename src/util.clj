@@ -123,15 +123,12 @@
 (defn proper-divisors
   "Returns the proper divisors of n."
   [n]
-    (conj (->> (range 2 bound)
-               (mapcat (fn [i]
-                         (if (divisor? i n)
-                           (let [q (quot n i)]
-                             (if (not= i q) [i (quot n i)] [i])))))
-               (filter (complement nil?))
-               sort)
-          1)))
   (let [bound (ceil (Math/sqrt n))]
+    (->> (range 1 bound)
+         (mapcat #(cond (= % 1) [1]
+                        (divisor? % n) [% (quot n %)]))
+         (remove #(or (nil? %) (= n %)))
+         sort)))
 
 (defn sum-of-proper-divisor
   "Returns the sum of n's proper divisors."
