@@ -56,10 +56,6 @@
   [ds n]
   (normailize-digits (map #(* % n) ds)))
 
-(defn divisor?
-  "Returns true if x is a divisor of n."
-  [x n] (zero? (rem n x)))
-
 (defn gcd
   "Returns the greatest common divisor of a and b."
   [a b] (if (= b 0) a (recur b (rem a b))))
@@ -116,6 +112,10 @@
      (->> (factorize n)
           (map (fn [[p k]] (phi p k)))
           (apply *))))
+
+(defn divisor?
+  "Returns true if x is a divisor of n."
+  [x n] (zero? (rem n x)))
 
 (defn proper-divisors
   "Returns the proper divisors of n."
