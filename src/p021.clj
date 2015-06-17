@@ -3,11 +3,9 @@
 (ns p021
   (:require [util :refer [sum-of-proper-divisor]]))
 
-(defn amicable [a]
+(defn amicable? [a]
   (let [b (sum-of-proper-divisor a)]
-    (if (and (not= a b) (= a (sum-of-proper-divisor b)))
-      a
-      0)))
+    (and (not= a b) (= a (sum-of-proper-divisor b)))))
 
 (defn solve []
-  (apply + (map amicable (range 1 10000))))
+  (apply + (filter amicable? (range 1 10000))))
