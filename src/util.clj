@@ -123,10 +123,10 @@
 (defn proper-divisors
   "Returns the proper divisors of n."
   [n]
-  (let [bound (ceil (Math/sqrt n))]
+  (let [bound (ceil (Math/sqrt n))
+        uniq #(if (= %1 %2) [%1] [%1 %2])]
     (->> (range 1 bound)
-         (mapcat #(cond (= % 1) [1]
-                        (divisor? % n) [% (quot n %)]))
+         (mapcat #(if (divisor? % n) (uniq % (quot n %))))
          (remove #(or (nil? %) (= n %)))
          sort)))
 
