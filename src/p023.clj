@@ -2,7 +2,7 @@
 ;; which cannot be written as the sum of two abundant numbers.
 
 (ns p023
-  (:require [util :refer [divisor? sum-of-proper-divisor]]))
+  (:require [util :refer [aliquot-sum]]))
 
 (def limit 28123)
 
