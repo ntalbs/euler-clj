@@ -12,10 +12,7 @@
 (defn score [name]
   (apply + (map (fn [a] (- (int a) (dec (int \A)))) name)))
 
-(defn p022 []
+(defn solve []
   (->> (map-indexed vector names)
        (map (fn [[i e]] (* (inc i) (score e))))
        (apply +)))
-
-(defn solve []
-  (time (println (p022))))

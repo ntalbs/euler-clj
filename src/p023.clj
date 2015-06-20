@@ -12,7 +12,7 @@
   (> (aliquot-sum n) n))
 
 ;; takes over 17 secs. need to improve.
-(defn p023 []
+(defn solve []
   (let [abundants (filter abundant? (range 12 (inc (- limit 12))))
         sum-of-2-abundants (reduce conj #{}
                                    (for [a1 abundants a2 abundants]
@@ -20,6 +20,3 @@
     (->> (range 1 (inc limit))
          (filter (fn [i] (nil? (sum-of-2-abundants i))))
          (apply +))))
-
-(defn solve []
-  (time (println (p023))))
