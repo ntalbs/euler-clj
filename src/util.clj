@@ -134,10 +134,17 @@
          (remove #(or (nil? %) (= n %)))
          sort)))
 
-(defn sum-of-proper-divisor
+(defn aliquot-sum
   "Returns the sum of n's proper divisors."
   [n]
   (apply + (proper-divisors n)))
+
+(defn aliquot-sum-by-formula [n]
+  (if (<= n 1) 0
+      (->> (factorize n)
+           (map (fn [[p a]] (reduce + (for [i (range (inc a))] (pow p i)))))
+           (reduce *)
+           (#(- % n)))))
 
 (defn- valid?
   "returns true if ops is valid sequence of expression. used internally in calc macro. "
