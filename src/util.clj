@@ -76,7 +76,11 @@
 
 (defn pow
   "Compute x^n."
-  [x n] (reduce *' (repeat n x)))
+  [x n]
+  (loop [n n acc 1]
+    (if (<= n 0)
+      acc
+      (recur (dec n) (*' acc x)))))
 
 (defn- ceil [x]
   (inc (int x)))
