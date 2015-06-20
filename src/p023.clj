@@ -9,7 +9,7 @@
 (defn abundant?
   "Returns true if n is abundant number."
   [n]
-  (> (sum-of-proper-divisor n) n))
+  (> (aliquot-sum n) n))
 
 ;; takes over 17 secs. need to improve.
 (defn p023 []
