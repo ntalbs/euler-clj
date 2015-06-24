@@ -134,15 +134,22 @@
          (remove #(or (nil? %) (= n %)))
          sort)))
 
-(defn aliquot-sum
+(defn aliquot-sum1
   "Returns the sum of n's proper divisors."
   [n]
   (apply + (proper-divisors n)))
 
-(defn aliquot-sum-by-formula [n]
+(defn aliquot-sum2 [n]
   (if (<= n 1) 0
       (->> (factorize n)
            (map (fn [[p a]] (reduce + (for [i (range (inc a))] (pow p i)))))
+           (reduce *)
+           (#(- % n)))))
+
+(defn aliquot-sum3 [n]
+  (if (<= n 1) 0
+      (->> (factorize n)
+           (map (fn [[p a]] (/ (dec (pow p (inc a))) (dec p))))
            (reduce *)
            (#(- % n)))))
 
