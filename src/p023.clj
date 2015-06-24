@@ -2,21 +2,21 @@
 ;; which cannot be written as the sum of two abundant numbers.
 
 (ns p023
-  (:require [util :refer [aliquot-sum]]))
+  (:require [util :refer [aliquot-sum3]]))
 
 (def limit 28123)
 
 (defn abundant?
   "Returns true if n is abundant number."
   [n]
-  (> (aliquot-sum n) n))
+  (> (aliquot-sum3 n) n))
 
-;; takes over 17 secs. need to improve.
 (defn solve []
   (let [abundants (filter abundant? (range 12 (inc (- limit 12))))
-        sum-of-2-abundants (reduce conj #{}
-                                   (for [a1 abundants a2 abundants]
-                                     (+ a1 a2)))]
+        sum-of-2-abundants (set (for [a1 abundants a2 abundants
+                                      :when (<= a1 a2)
+                                      :when (<= (+ a1 a2) limit)]
+                                  (+ a1 a2)))]
     (->> (range 1 (inc limit))
-         (filter (fn [i] (nil? (sum-of-2-abundants i))))
+         (remove #(sum-of-2-abundants %))
          (apply +))))
