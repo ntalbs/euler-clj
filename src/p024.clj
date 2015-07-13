@@ -5,5 +5,5 @@
   (:require [clojure.math.combinatorics :as c]))
 
 (defn solve1 []
-  (apply str (nth (c/permutations (range 10)) (dec 1000000))))
+  (apply str (c/nth-permutation (range 10) (dec 1000000))))
 
