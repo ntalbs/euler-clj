@@ -4,6 +4,5 @@
 (ns p024
   (:require [clojure.math.combinatorics :as c]))
 
-(defn solve1 []
+(defn solve []
   (apply str (c/nth-permutation (range 10) (dec 1000000))))
-
