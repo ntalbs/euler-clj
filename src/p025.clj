@@ -2,10 +2,12 @@
 
 (ns p025)
 
-(defn fibo [[a b]] [b (+' a b)])
+(def fibo-iter
+  (->> (iterate (fn [[a b]] [b (+' a b)]) [1 1])
+       (map first)))
 
 (defn solve []
-  (->> (iterate fibo [1 1])
+  (->> fibo-iter
        (map-indexed (fn [i e] [(inc i) e]))
-       (drop-while (fn [[_ [a b]]] (< (count (str a)) 1000)))
+       (drop-while (fn [[_ a]] (< (count (str a)) 1000)))
        ffirst))
