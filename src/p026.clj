@@ -13,11 +13,8 @@
           (contains? r-acc r) [n q-acc (count q-acc)] ; recurring
           :else (recur (* 10 (rem r n)) (conj r-acc r) (conj q-acc (quot r n))))))
 
-(defn p026 []
+(defn solve []
   (->> (range 1 (inc 1000))
        (map (fn [n] (qs n)))
        (apply max-key (fn [[n _ cnt]] cnt))
        first))
-
-(defn solve []
-  (time (println (p026))))
