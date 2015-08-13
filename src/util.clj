@@ -94,7 +94,7 @@
         (< n 9) true                    ; 5, 7
         (= 0 (mod n 3)) false
         :else (nil? (first (filter #(= 0 (mod n %))
-                                     (range 5 (ceil (Math/sqrt n)) 2))))))
+                                   (range 5 (ceil (Math/sqrt n)) 2))))))
 
 (defn factorize
   "Returns a sequence of pairs of prime factor and its exponent."
