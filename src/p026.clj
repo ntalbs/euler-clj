@@ -15,6 +15,6 @@
 
 (defn solve []
   (->> (range 1 (inc 1000))
-       (map (fn [n] (qs n)))
-       (apply max-key (fn [[n _ cnt]] cnt))
+       (map qs)
+       (apply max-key (fn [[_ _ cnt]] cnt))
        first))
