@@ -1,13 +1,14 @@
 (ns p027
   (:require [util :refer [prime?]]))
 
-(defn f [a b n]
-  (+ (* n n) (* a n) b))
+(defn f [a b]
+  (fn [n]
+    (+ (* n n) (* a n) b)))
 
 (defn prime-count [a b]
   (->> (iterate inc 0)
-       (map #(f a b %))
        (map #(Math/abs %))
+       (map (f a b))
        (take-while prime?)
        count))
 
