@@ -7,7 +7,6 @@
 
 (defn prime-count [a b]
   (->> (iterate inc 0)
-       (map #(Math/abs %))
        (map (f a b))
        (take-while prime?)
        count))
