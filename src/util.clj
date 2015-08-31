@@ -88,7 +88,7 @@
 (defn prime?
   "Returns true if n is prime."
   [n]
-  (cond (= n 1) false
+  (cond (< n 2) false
         (< n 4) true                    ; 2, 3
         (even? n) false
         (< n 9) true                    ; 5, 7
