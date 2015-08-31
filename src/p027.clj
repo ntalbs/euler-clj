@@ -11,12 +11,15 @@
        (take-while prime?)
        count))
 
-(defn seq-of-prime-count []
+(defn solve1 []
   (let [lower -999 upper 1000]
-    (for [a (range  lower upper) b (range lower upper)
-          :when (prime? b)
-          :when (prime? (+ 1 a b))]
-      {:a a :b b :ab (* a b) :cnt (prime-count a b)})))
+    (->> (for [a (range lower upper)
+               b (range 2 upper)
+               :when (prime? b)
+               :when (prime? (+ 1 a b))]
+           {:a*b (* a b) :cnt (prime-count a b)})
+         (apply max-key :cnt)
+         :a*b)))
 
 ; takes over 17 secs. need to improve.
 (defn p027 []
