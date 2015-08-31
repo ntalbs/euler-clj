@@ -1,5 +1,6 @@
 (ns p027
-  (:require [util :refer [prime?]]))
+  (:require [clojure.contrib.lazy-seqs :refer [primes]]
+            [util :refer [prime?]]))
 
 (defn f [a b]
   (fn [n]
@@ -21,9 +22,12 @@
          (apply max-key :cnt)
          :a*b)))
 
-; takes over 17 secs. need to improve.
-(defn p027 []
-  (reduce (fn [a b] (if (< (:cnt a) (:cnt b)) b a)) (seq-of-prime-count)))
-
-(defn solve []
-  (time (println (p027))))
+(defn solve2 []
+  (->> (for [b (take-while #(< % 1000) primes)
+             a (range -999 1000)
+             ;; :when (let [r (+ 1 a b)] (or (= 2 r) (odd? r)))
+             :when (prime? (+ 1 a b))
+             ]
+         {:a*b (* a b) :cnt (prime-count a b)})
+       (apply max-key :cnt)
+       :a*b))
