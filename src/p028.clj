@@ -1,17 +1,16 @@
 (ns p028)
 
-(defn square [n] (* n n))
+(def size 1001)
 
-; n=(1 2 3 4)라 할 때,
-; i번째 테두리의 대각선 요소는 다음 식으로 구할 수 있음 (i >= 2)
-; l(i) = (2i-2)n + (2i-3)^2
-(defn l [i n]
-  (+ (-> (* 2 i) (- 2) (* n)) (square (-> (* 2 i) (- 3)))))
+(defn- square [n] (* n n))
 
-(defn p028 [size]
-  (let [s (for [i (range 2 (inc (/ (inc size) 2)))]
-            (apply + (map (partial l i) (range 1 5))))]
-    (+ 1 (apply + s))))
+;; d(n,k) = 2n(k+1) + (2n-1)^2
+(defn- d
+  "n번째 ring의 대각선 요소 수를 구하는 함수. n=1,2,3..., k=(0,1,2,3)"
+  [n k]
+  (+ (* 2 n (inc k)) (square (dec (* 2 n)))))
 
 (defn solve []
-  (time (println (p028 1001))))
+  (->> (for [n (range 1 (inc (int (/ size 2)))) k (range 4)] (d n k))
+       (apply +)
+       (+ 1)))
