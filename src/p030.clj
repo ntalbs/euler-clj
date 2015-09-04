@@ -9,10 +9,7 @@
        (map (fn [x] (pow x 5)))
        (apply +)))
 
-(defn p030 []
+(defn solve []
   (->> (range 2 1000000)
        (filter #(= % (sum-of-5th-power-of-digits %)))
        (apply +)))
-
-(defn solve []
-  (time (println (p030))))
