@@ -4,9 +4,7 @@
 (ns p029
   (:require [util :refer [pow]]))
 
-(defn p029 []
+(defn solve1 []
   (let [rng (range 2 (inc 100))]
     (count (into #{} (for [a rng b rng] (pow a b))))))
 
-(defn solve []
-  (time (println (p029))))
