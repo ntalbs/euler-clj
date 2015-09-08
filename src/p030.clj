@@ -10,6 +10,6 @@
        (apply +)))
 
 (defn solve []
-  (->> (range 2 1000000)
+  (->> (range 2 354294)
        (filter #(= % (sum-of-5th-power-of-digits %)))
        (apply +)))
