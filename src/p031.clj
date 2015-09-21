@@ -13,14 +13,14 @@
     7 100
     8 200))
 
-(defn cc [amount kinds-of-coins]
-  (cond (= amount 0) 1
-        (or (< amount 0) (= kinds-of-coins 0)) 0
-        :else (+ (cc amount (dec kinds-of-coins))
-                 (cc (- amount (first-denomination kinds-of-coins)) kinds-of-coins))))
-
-(defn count-change [amount]
-  (cc amount 8))
+(defn count-change [amt]
+  (letfn [(cc [amt coin]
+            (cond
+              (= amt 0) 1
+              (or (< amt 0) (= coin 0)) 0
+              :else (+ (cc amt (dec coin))
+                       (cc (- amt (first-denomination coin)) coin))))]
+    (cc amt 8)))
 
 (defn solve []
   (count-change 200))
