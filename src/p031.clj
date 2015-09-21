@@ -17,7 +17,8 @@
   (letfn [(cc [amt coin]
             (cond
               (= amt 0) 1
-              (or (< amt 0) (= coin 0)) 0
+              (< amt 0) 0
+              (= coin 0) 0
               :else (+ (cc amt (dec coin))
                        (cc (- amt (first-denomination coin)) coin))))]
     (cc amt 8)))
