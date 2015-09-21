@@ -22,4 +22,4 @@
   (cc amount 8))
 
 (defn solve []
-  (time (println (count-change 200))))
+  (count-change 200))
