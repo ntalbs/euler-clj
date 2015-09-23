@@ -13,7 +13,7 @@
     7 100
     8 200))
 
-(defn count-change [amt]
+(defn- count-change [amt]
   (letfn [(cc [amt coin]
             (cond
               (= amt 0) 1
