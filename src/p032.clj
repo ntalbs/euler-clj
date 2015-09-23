@@ -22,12 +22,9 @@
   [(check-pattern v 1 4)
    (check-pattern v 2 3)])
 
-(defn p032 []
+(defn solve []
   (->> (permutations (range 1 10))
        (mapcat check)
        (filter #(not (nil? %)))
        (into #{})
        (apply +)))
-
-(defn solve []
-  (time (println (p032))))
