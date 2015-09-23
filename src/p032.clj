@@ -7,7 +7,7 @@
 ;;    (3,2) and (4,1) are symmetric and don't need to investigate.
 
 (ns p032
-  (:require [clojure.math.combinatorics :refer [permutations combinations]]))
+  (:require [clojure.math.combinatorics :refer [permutations]]))
 
 (defn to-int [v]
   (Integer/parseInt (apply str v)))
