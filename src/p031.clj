@@ -20,7 +20,7 @@
               (< amt 0) 0
               (= coin 0) 0
               :else (+ (cc amt (dec coin))
-                       (cc (- amt (first-denomination coin)) coin))))]
+                       (cc (- amt (value coin)) coin))))]
     (cc amt 8)))
 
 (defn solve []
