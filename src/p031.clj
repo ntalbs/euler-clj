@@ -2,8 +2,8 @@
 
 (ns p031)
 
-(defn- value [coin]
-  (case coin
+(defn- value [n]
+  (case n
     1 1
     2 2
     3 5
@@ -13,15 +13,13 @@
     7 100
     8 200))
 
-(defn- count-change [amt]
-  (letfn [(cc [amt coin]
-            (cond
-              (= amt 0) 1
-              (< amt 0) 0
-              (= coin 0) 0
-              :else (+ (cc amt (dec coin))
-                       (cc (- amt (value coin)) coin))))]
-    (cc amt 8)))
+(defn- cc [amt n]
+  (cond
+    (= amt 0) 1
+    (< amt 0) 0
+    (= n 0) 0
+    :else (+ (cc amt (dec n))
+             (cc (- amt (value n)) n))))
 
 (defn solve []
-  (count-change 200))
+  (cc 200 8))
