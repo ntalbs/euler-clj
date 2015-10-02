@@ -9,22 +9,28 @@
 (ns p032
   (:require [clojure.math.combinatorics :refer [permutations]]))
 
-(defn to-int [v]
+(defn- to-int [v]
   (Integer/parseInt (apply str v)))
 
-(defn check-pattern [v digits-a digits-b]
-  (let [a (to-int (take digits-a v))
-        b (to-int (->> (drop digits-a v) (take digits-b)))
-        c (to-int (drop (+ digits-a digits-b) v))]
+(defn- to-int [ds]
+  (loop [[x & more] ds acc 0]
+    (if (nil? more)
+      (+ (* acc 10) x)
+      (recur more (+ (* acc 10) x)))))
+
+(defn- check-pattern [v n1 n2]
+  (let [a (to-int (subvec v 0 n1))
+        b (to-int (subvec v n1 (+ n1 n2)))
+        c (to-int (subvec v (+ n1 n2)))]
     (if (= (* a b) c) c)))
 
-(defn check [v]
+(defn- check [v]
   [(check-pattern v 1 4)
    (check-pattern v 2 3)])
 
 (defn solve []
   (->> (permutations (range 1 10))
        (mapcat check)
-       (filter #(not (nil? %)))
-       (into #{})
-       (apply +)))
+       (remove #(nil? %))
+       (distinct)
+       (reduce +)))
