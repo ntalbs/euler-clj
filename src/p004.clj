@@ -1,11 +1,12 @@
 ;; largest palindrome made from the product of two 3-digit numbers
 
-(ns p004)
-
-(def limit 1000)
+(ns p004
+    (:require [clojure.string :as s]))
 
 (defn palindrome? [n]
-  (= (str n) (apply str (reverse (str n)))))
+  (= (str n) (s/reverse (str n))))
+
+(def limit 1000)
 
 ; initial
 (defn initial-approach []
