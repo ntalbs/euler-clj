@@ -1,14 +1,12 @@
-(ns p033)
+(ns p033
+  (:require [util :refer [digits]]))
 
-(defn decomp-num [n] {:pre [(<= 10 n 99)]}
-  [(quot n 10) (rem n 10)])
-
-(defn st-cancel "strange cancel" [[n d]]
-  (let [[n-d1 n-d2] (decomp-num n) [d-d1 d-d2] (decomp-num d)]
-    (cond (= n-d1 d-d1) (/ n-d2 d-d2)
-          (= n-d1 d-d2) (/ n-d2 d-d1)
-          (= n-d2 d-d1) (/ n-d1 d-d2)
-          (= n-d2 d-d2) (/ n-d1 d-d1)
+(defn st-cancel "strange cancel" [n d]
+  (let [[n1 n2] (digits n) [d1 d2] (digits d)]
+    (cond (= n1 d1) (/ n2 d2)
+          (= n1 d2) (/ n2 d1)
+          (= n2 d1) (/ n1 d2)
+          (= n2 d2) (/ n1 d1)
           :else nil)))
 
 (def rs
