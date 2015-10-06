@@ -25,7 +25,3 @@
          (* a b))
        (filter palindrome?)
        (apply max)))
-
-(defn solve []
-  (time (println "initial => " (initial-approach)))
-  (time (println "improved => " (improved))))
