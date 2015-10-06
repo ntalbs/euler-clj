@@ -15,10 +15,9 @@
         :when (not= 0 (mod d 10))]
     [n d]))
 
-(defn p033 []
-  (reduce *
-          (map (fn [[n d]] (/ n d))
-               (filter (fn [[n d]] (= (/ n d) (st-cancel [n d]))) rs))))
-
 (defn solve []
-  (time (println (p033))))
+  (->> rs
+       (filter (fn [[n d]] (= (/ n d) (st-cancel n d))))
+       (map (fn [[n d]] (/ n d)))
+       (reduce *)
+       denominator))
