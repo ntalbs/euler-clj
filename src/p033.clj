@@ -10,8 +10,7 @@
           :else nil)))
 
 (def rs
-  (for [n (range 10 100) d (range 10 100)
-        :when (< n d)
+  (for [n (range 10 100) d (range (inc n) 100)
         :when (not= 0 (mod n 10))
         :when (not= 0 (mod d 10))]
     [n d]))
