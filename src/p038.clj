@@ -17,11 +17,8 @@
 ; M x 1 = dddd
 ; M x 2 = ddddd
 
-(defn p038 []
+(defn solve []
   (->> (range 9999 1 -1)
        (map prod)
        (drop-while #(not (pandigital? %)))
        first))
-
-(defn solve []
-  (time (println (p038))))
