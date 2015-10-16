@@ -1,15 +1,13 @@
-;; Find the sum of the only eleven primes
-;; that are both truncatable from left to right and right to left.
-
 (ns p037
   (:require [clojure.contrib.lazy-seqs :refer [primes]]
-            [util :refer [parse-int prime? digits]]))
+            [util :refer [parse-int prime? digits pow]]))
 
-(defn to-int [digits]
+;; 방법 1
+
+(defn- to-int [digits]
   (parse-int (apply str digits)))
 
-(defn truncated-nums
-  "Returns the sequence of numbers which are truncated from left and right."
+(defn- truncated-nums
   [num]
   (let [digits (digits num) n (count digits)]
     (->> (for [i (range n)]
@@ -17,15 +15,42 @@
          flatten
          sort)))
 
-(defn all-prime? [nums]
+(defn- all-prime? [nums]
   (= (count nums)
      (count (take-while prime? nums))))
 
-(defn p037 []
+(defn solve1 []
   (->> (drop 4 primes) ; drop 2, 3, 5, 7
        (filter  (fn [n] (all-prime? (truncated-nums n))))
        (take 11)
        (apply +)))
 
-(defn solve []
-  (time (println (p037))))
+
+;; 방법 2
+
+(defn- truncate-right [n]
+  (quot n 10))
+
+(defn- right-truncatable-prime? [p]
+  (loop [n (truncate-right p)]
+    (if (prime? n)
+      (if (< n 10)
+        true
+        (recur (truncate-right n))))))
+
+(defn- truncate-left [n]
+  (rem n (pow 10 (int (Math/log10 n)))))
+
+(defn- left-truncatable-prime? [p]
+  (loop [n (truncate-left p)]
+    (if (prime? n)
+      (if (< n 10)
+        true
+        (recur (truncate-left n))))))
+
+(defn solve2 []
+  (->> primes
+       (drop 4) ; drop 2, 3, 5, 7
+       (filter #(and (left-truncatable-prime? %) (right-truncatable-prime? %)))
+       (take 11)
+       (reduce +)))
