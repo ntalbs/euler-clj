@@ -10,10 +10,10 @@
 (defn- truncated-nums
   [num]
   (let [digits (digits num) n (count digits)]
-    (->> (for [i (range n)]
-           [(to-int (drop i digits)) (to-int (take (inc i) digits))])
+    (->> (for [i (range 1 n)]
+           [(to-int (drop i digits)) (to-int (take i digits))])
          flatten
-         sort)))
+         set)))
 
 (defn- all-prime? [nums]
   (= (count nums)
