@@ -28,25 +28,24 @@
 
 ;; 방법 2
 
+(defn- truncatable-prime? [p f]
+  (loop [n (f p)]
+    (if (prime? n)
+      (if (< n 10)
+        true
+        (recur (f n))))))
+
 (defn- truncate-right [n]
   (quot n 10))
 
 (defn- right-truncatable-prime? [p]
-  (loop [n (truncate-right p)]
-    (if (prime? n)
-      (if (< n 10)
-        true
-        (recur (truncate-right n))))))
+  (truncatable-prime? p truncate-right))
 
 (defn- truncate-left [n]
   (rem n (pow 10 (int (Math/log10 n)))))
 
 (defn- left-truncatable-prime? [p]
-  (loop [n (truncate-left p)]
-    (if (prime? n)
-      (if (< n 10)
-        true
-        (recur (truncate-left n))))))
+  (truncatable-prime? p truncate-left))
 
 (defn solve2 []
   (->> primes
