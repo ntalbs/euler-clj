@@ -5,10 +5,9 @@
 
 (defn- prod-concat [n]
   (loop [i 1 acc ""]
-    (if (or (< 9 i) (<= 9 (count acc)))
-      (apply str acc)
-      (recur (inc i) (concat acc (str (* n i)))))))
-
+    (if (< (count acc) 9)
+      (recur (inc i) (str acc (* n i)))
+      acc)))
 
 (defn solve []
   (->> (range 9999 1 -1)
