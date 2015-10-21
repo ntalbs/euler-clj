@@ -1,7 +1,7 @@
 (ns p038)
 
-(defn pandigital? [sn]
-  (= "123456789" (apply str (sort sn))))
+(defn- pandigital? [numstr]
+  (= "123456789" (apply str (sort numstr))))
 
 (defn prod [n]
   (loop [i 1 acc ""]
