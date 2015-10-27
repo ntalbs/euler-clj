@@ -9,13 +9,13 @@
 (defn- triangle-number? [n]
   (contains? t-set n))
 
-(def words
-  (clojure.string/split (slurp "data/words.txt") #"\"(,\")?"))
 (defn- word-value [word]
   (->> word
        (map #(- (int %) 64))
        (apply +)))
 
-  (->> (map word-value words)
+(defn solve []
+  (->> (clojure.string/split (slurp "data/words.txt") #"\"(,\")?")
+       (map word-value)
        (filter triangle-number?)
        count))
