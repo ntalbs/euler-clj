@@ -16,10 +16,6 @@
        (map #(- (int %) 64))
        (apply +)))
 
-(defn p042 []
   (->> (map word-value words)
        (filter triangle-number?)
        count))
-
-(defn solve []
-  (time (println (p042))))
