@@ -4,8 +4,7 @@
   (-> (+ n 1) (* n) (/ 2)))
 
 (def t-set
-  (into #{} (map t (range 1 100))))
-
+  (set (map t (range 1 100))))
 
 (defn- triangle-number? [n]
   (contains? t-set n))
