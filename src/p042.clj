@@ -6,15 +6,16 @@
 (def t-set
   (into #{} (map t (range 1 100))))
 
-(defn word-value [word]
-  (->> (map #(- (int %) 64) word)
-       (apply +)))
 
 (defn- triangle-number? [n]
   (contains? t-set n))
 
 (def words
   (clojure.string/split (slurp "data/words.txt") #"\"(,\")?"))
+(defn- word-value [word]
+  (->> word
+       (map #(- (int %) 64))
+       (apply +)))
 
 (defn p042 []
   (->> (map word-value words)
