@@ -1,6 +1,6 @@
 (ns p042)
 
-(defn t [n]
+(defn- t [n]
   (-> (+ n 1) (* n) (/ 2)))
 
 (def t-set
@@ -10,7 +10,7 @@
   (->> (map #(- (int %) 64) word)
        (apply +)))
 
-(defn triangle-number? [n]
+(defn- triangle-number? [n]
   (contains? t-set n))
 
 (def words
