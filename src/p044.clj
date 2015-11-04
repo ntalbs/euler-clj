@@ -1,6 +1,6 @@
 (ns p044)
 
-(defn p
+(defn- p
   "Returns a n-th pentagonal number. P(n) = n (3n−1)/2"
   [n]
   (/ (* n (- (* 3 n) 1)) 2))
