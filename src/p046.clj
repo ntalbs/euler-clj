@@ -15,8 +15,5 @@
 (def goldbach-nums
   (into #{} (for [p ps n (range 1 (Math/sqrt limit))] (+ p (* 2 n n)))))
 
-(defn p046 []
-  (apply min (difference odd-composite-nums goldbach-nums)))
-
 (defn solve []
-  (time (println (p046))))
+  (apply min (difference odd-composite-nums goldbach-nums)))
