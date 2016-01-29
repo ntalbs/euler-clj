@@ -31,4 +31,5 @@
        (map find-arithmetic-seq)
        (filter not-empty)
        distinct
-       (map #(apply str %))))
+       (map #(apply str %))
+       second))
