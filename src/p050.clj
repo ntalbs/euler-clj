@@ -1,6 +1,3 @@
-;; Which prime, below one-million, can be written
-;; as the sum of the most consecutive primes?
-
 (ns p050
   (:require [clojure.contrib.lazy-seqs :refer [primes]]
             [util :refer [prime?]]))
