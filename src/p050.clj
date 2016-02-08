@@ -4,12 +4,11 @@
 
 (def csp "cumulative sums of primes"
   (->> primes
-       (reductions +)
+       (reductions + 0)
        (take-while #(< % 1000000))))
 
 (defn solve []
-  (->> (for [s (conj csp 0)] (map #(- % s) csp))
-       flatten
-       (filter pos?)
+  (->> (for [s csp t csp :when (< s t)] (- t s))
+       (filter odd?)
        (filter prime?)
        (apply max)))
