@@ -1,9 +1,8 @@
-(ns p052
-  (:require [util :refer [digits]]))
+(ns p052)
 
-(defn check [v]
-  (->> (map digits v)
-       (map sort)
+(defn all-has-same-digits? [v]
+  (->> v
+       (map (comp sort str))
        (apply =)))
 
 (defn solve []
