@@ -104,11 +104,9 @@
           :else (cond (> p1-higest p2-highest) :p1
                       (< p1-higest p2-highest) :p2
                       :else nil))))
-(defn p054 []
+
+(defn solve []
   (->> (map (fn [g] (winner (g :p1) (g :p2))) games)
        (group-by identity)
        :p1
        count))
-
-(defn solve []
-  (time (println (p054))))
