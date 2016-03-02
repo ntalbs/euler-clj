@@ -45,8 +45,5 @@
         :when (any-two-concat-prime? [p1 p2 p3 p4 p5])]
     [p1 p2 p3 p4 p5]))
 
-(defn p060 []
-  (apply + (first ps5)))
-
 (defn solve []
-  (time (println (p060))))
+  (apply + (first ps5)))

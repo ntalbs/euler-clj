@@ -1,5 +1,3 @@
-;; How many Lychrel numbers are there below ten-thousand?
-
 (ns p055)
 
 (defn reverse-num [n]
@@ -17,10 +15,7 @@
           false
           (recur sn (inc cnt)))))))
 
-(defn p055 []
+(defn solve []
   (->> (range 10 (inc 10000))
        (filter lychrel?)
        count))
-
-(defn solve []
-  (time (println (p055))))

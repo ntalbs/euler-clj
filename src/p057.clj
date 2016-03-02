@@ -8,11 +8,8 @@
 (defn digit-cnt [n]
   (count (str n)))
 
-(defn p057 []
+(defn solve []
   (->> (iterate conv a)
        (take 1000)
        (filter (fn [r] (> (digit-cnt (numerator r)) (digit-cnt (denominator r)))))
        count))
-
-(defn solve []
-  (time (println (p057))))

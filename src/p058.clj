@@ -22,12 +22,9 @@
      :prime (+ (cnt-prime acc) (cnt-prime next))
      :total (+ (count acc) (count next))}))
 
-(defn p058 []
+(defn solve []
   (->> (reductions accumulate {:width 1 :prime 0 :total 1} d)
        (rest) ;; skip first
        (map (fn [a] {:width (:width a) :r (/ (:prime a) (:total a))}))
        (drop-while (fn [m] (>= (:r m) 0.1)))
        (first)))
-
-(defn solve []
-  (time (println (p058))))

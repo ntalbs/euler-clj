@@ -20,12 +20,9 @@
   (for [a a2z b a2z c a2z]
     (str a b c)))
 
-(defn p059 []
+(defn solve []
   (->> (map #(decipher encrypted-message %) passwd-candidates)
        (filter #(re-matches #"[^`~\p{Cntrl}]+" %))
        (first)
        (map int)
        (apply +)))
-
-(defn solve []
-  (time (println (p059))))
