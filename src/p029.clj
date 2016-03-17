@@ -6,7 +6,9 @@
 
 (defn solve1 []
   (let [rng (range 2 (inc 100))]
-    (count (into #{} (for [a rng b rng] (pow a b))))))
+    (->> (for [a rng b rng] (pow a b))
+         set
+         count)))
 
 ;; BigInt를 쓰지 않고 숫자 시퀀스로 푼 방법.
 ;; 너무 느리다.
@@ -19,5 +21,5 @@
 (defn solve2 []
   (let [rng (range 2 (inc 100))]
     (->> (for [a rng b rng] (digits-pow a b))
-         (into #{})
+         set
          count)))
