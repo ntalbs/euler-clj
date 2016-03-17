@@ -2,8 +2,7 @@
   (:require [util :refer (pow digits)]))
 
 (defn solve []
-  (apply max
-         (for [a (range 1 100) b (range 1 100)]
-           (->> (pow a b)
-                (digits)
-                (apply +)))))
+  (->> (for [a (range 1 100) b (range 1 100)] (pow a b))
+       (map digits)
+       (map #(apply + %))
+       (apply max)))
