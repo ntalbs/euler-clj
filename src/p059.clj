@@ -8,21 +8,16 @@
        (map parse-int)))
 
 (defn decipher [encrypted key]
-  (let [key (mapcat (fn [v] v) (repeat (map int key)))]
+  (let [key (mapcat identity (repeat key))]
     (->> (map bit-xor encrypted key)
          (map char)
          (apply str))))
 
-(def a2z
-  (map char (range (int \a) (inc (int \z)))))
-
-(def passwd-candidates
-  (for [a a2z b a2z c a2z]
-    (str a b c)))
-
 (defn solve []
-  (->> (map #(decipher encrypted-message %) passwd-candidates)
-       (filter #(re-matches #"[^`~\p{Cntrl}]+" %))
-       (first)
-       (map int)
-       (apply +)))
+  (let [a2z (range (int \a) (inc (int \z)))]
+    (->> (for [a a2z b a2z c a2z] [a b c])
+         (map #(decipher encrypted-message %))
+         (filter #(re-matches #"[^`~\p{Cntrl}]+" %))
+         (first)
+         (map int)
+         (apply +))))
