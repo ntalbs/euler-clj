@@ -3,9 +3,14 @@
             [clojure.math.combinatorics :refer [combinations]]
             [util :refer [pow prime?]]))
 
+;; (defn concat-nums [a b]
+;;   (let [m (inc (int (Math/log10 b)))]
+;;     (+ (* a (pow 10 m)) b)))
+
+(def limit 10000)
+
 (defn concat-nums [a b]
-  (let [m (inc (int (Math/log10 b)))]
-    (+ (* a (pow 10 m)) b)))
+  (Integer/parseInt (str a b)))
 
 (defn concated-prime? [a b]
   (and (prime? (concat-nums a b))
@@ -19,7 +24,7 @@
        empty?))
 
 (def ps1
-  (take-while #(< % 10000) (drop 1 primes)))
+  (take-while #(< % limit) (drop 1 primes)))
 
 (def ps2
   (for [p1 ps1, p2 ps1
