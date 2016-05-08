@@ -2,7 +2,7 @@
   (:require [util :refer (digits)]))
 
 (defn- xs
-  "a100 a99 a98 ... a0"
+  "a(n-1) a(n-2) ... a0"
   [n]
   (->> (iterate inc 1)
        (mapcat #(vector 1 (* 2 %) 1))
@@ -14,7 +14,8 @@
   (+ b (/ 1 a)))
 
 (defn solve []
-  (->> (reduce f (xs 100))
+  (->> (xs 100)
+       (reduce f)
        numerator
        digits
        (apply +)))
