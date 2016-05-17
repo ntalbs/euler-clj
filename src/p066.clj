@@ -19,11 +19,8 @@
                k1 (+' (*' (first as) k1) k2)
                (rest as) (inc n))))))
 
-(defn p066 []
+(defn solve []
   (->> (range 2 (inc 1000))
        (filter (complement perfect-square?))
        (map (fn [d] [d (first (find-fundamental-solution d))]))
        (apply (partial max-key second))))
-
-(defn solve []
-  (time (p066)))
