@@ -1,18 +1,21 @@
-;; Basically the same as #018.
-
 (ns p067
   (:require [util :refer [parse-int]]
             [clojure.string :refer [split]]))
 
+(defn- split-by-line [content]
+  (split content #"\r\n"))
+
+(defn- parse-line [line]
+  (->> (split line #" ") (map parse-int)))
+
 (def triangle
-  (map (fn [s] (map parse-int (split s #" ")))
-       (split (slurp "data/triangle.txt") #"\r\n")))
+  (->> (slurp "data/triangle.txt")
+       split-by-line
+       (map parse-line)
+       reverse))
 
 (defn find-max [t]
-  (reduce (fn [ls vs] (map max (map + ls vs) (map + (rest ls) vs))) t))
-
-(defn p067 []
-  (first (find-max (reverse triangle))))
+  (first (reduce (fn [ls us] (map max (map + ls us) (map + (rest ls) us))) t)))
 
 (defn solve []
-  (time (println (p067))))
+  (find-max triangle))
