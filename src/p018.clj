@@ -19,7 +19,7 @@
     [ 4 62 98 27 23  9 70 98 73 93 38 53 60  4 23]]))
 
 (defn find-max [t]
-  (reduce (fn [ls us] (map max (map + ls us) (map + (rest ls) us))) t))
+  (first (reduce (fn [ls us] (map max (map + ls us) (map + (rest ls) us))) t)))
 
 (defn solve []
   (find-max triangle))
