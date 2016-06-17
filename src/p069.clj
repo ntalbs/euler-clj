@@ -3,10 +3,7 @@
 (ns p069
   (:require [clojure.contrib.lazy-seqs :refer (primes)]))
 
-(defn p069 []
+(defn solve []
   (->> (reductions * primes)
        (take-while #(< % 1000000))
        last))
-
-(defn solve []
-  (time (println (p069))))

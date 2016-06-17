@@ -7,8 +7,5 @@
         :when (= 1 (gcd n d))]
     (/ n d)))
 
-(defn p073 []
-  (count (reduced-proper-fractions 12000)))
-
 (defn solve []
-  (time (println (p073))))
+  (count (reduced-proper-fractions 12000)))
