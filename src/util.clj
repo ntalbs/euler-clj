@@ -108,18 +108,6 @@
         (->> (group-by identity acc)
              (map (fn [[k v]] [k (count v)])))))))
 
-(defn phi
-  "Returns the number of the positive integers less than or equal to n
-   that are relatively prime to n.
-   Aka Euler's totient of phi function."
-  ([p k]
-     (letfn [(power [p k] (apply * (repeat k p)))]
-       (* (power p k) (- 1 (/ 1 p)))))
-  ([n]
-     (->> (factorize n)
-          (map (fn [[p k]] (phi p k)))
-          (apply *))))
-
 (defn divisor?
   "Returns true if x is a divisor of n."
   [x n] (zero? (rem n x)))

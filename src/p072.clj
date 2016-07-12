@@ -1,13 +1,17 @@
-;; How many elements would be contained
-;; in the set of reduced proper fractions for d  1,000,000?
-
 (ns p072
-  (:require [util :refer (phi)]))
+  (:require [util :refer [pow factorize]]))
 
-; The same as phi(1) + phi(2) + ... + phi(1000000).
-; Refer to http://en.wikipedia.org/wiki/Euler's_totient_function
+(def limit 1000000)
 
-(defn solve [limit]
-  (->> (range 1 (inc limit))
-       (map phi)
+(defn phi
+  ([p k]
+   (* (pow p k) (- 1 (/ 1 p))))
+  ([n]
+   (->> (factorize n)
+        (map (fn [[p k]] (phi p k)))
+        (apply *))))
+
+(defn solve []
+  (->> (range 2 (inc limit))
+       (pmap phi)
        (apply +)))
