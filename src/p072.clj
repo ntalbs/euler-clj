@@ -11,7 +11,22 @@
         (map (fn [[p k]] (phi p k)))
         (apply *))))
 
-(defn solve []
+(defn solve1 []
   (->> (range 2 (inc limit))
        (pmap phi)
        (apply +)))
+
+(defn- asum [^ints xs]
+  (areduce xs i ret (long 0) (+ ret (aget xs i))))
+
+(defn solve2 []
+  (let [phi (int-array (range (inc limit)))]
+    (loop [i 2]
+      (if (= i (aget phi i))
+        (loop [j i]
+          (if (<= j limit)
+            (do (aset phi j (/ (* (aget phi j) (dec i)) i))
+                (recur (+ j i))))))
+      (if (< i limit)
+        (recur (inc i))))
+    (asum phi)))
