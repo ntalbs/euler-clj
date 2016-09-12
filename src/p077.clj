@@ -8,19 +8,14 @@
 (def i->p
   (into {} (take limit (map-indexed (fn [i p] [(inc i) p]) primes))))
 
-(defn count-sum-of-primes [num]
-  (letfn [(cc [num ps-index]
-            (cond (= num 0) 1
-                  (or (< num 0) (= ps-index 0)) 0
-                  :else (+ (cc num (dec ps-index))
-                           (cc (- num (i->p ps-index)) ps-index))))]
-    (cc num limit)))
-
-(defn p077 []
-  (->> (iterate inc 10)
-       (map (fn [n] [n (count-sum-of-primes n)]))
-       (drop-while (fn [[_ c]] (<= c 5000)))
-       ffirst))
+(defn- cc [n i]
+  (cond (= n 0) 1
+        (< n 0) 0
+        (= i 0) 0
+        :else (+ (cc n (dec i)) (cc (- n (i->p i)) i))))
 
 (defn solve []
-  (time (println (p077))))
+  (->> (iterate inc 2)
+       (map (fn [n] [n (cc n limit)]))
+       (drop-while (fn [[_ c]] (<= c 5000)))
+       ffirst))
