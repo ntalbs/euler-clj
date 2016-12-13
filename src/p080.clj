@@ -14,13 +14,10 @@
         (recur (*' 100 a) (+' (*' (quot b 10) 100) (rem b 10))))
       (quot b 10))))                    ; 101째 자리 제거
 
-(defn p080 []
+(defn solve []
   (->> (range 1 (inc 100))
        (remove perfect-square?)
        (map sqrt)
        (map digits)
        (flatten)
        (apply +)))
-
-(defn solve []
-  (time (println (p080))))

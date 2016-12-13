@@ -1,30 +1,31 @@
 ;; http://en.wikipedia.org/wiki/Partition_(number_theory)#Partition_function_formulas
 ;; http://en.wikipedia.org/wiki/Pentagonal_number_theorem
 
-(ns p078
-  (:require [util :refer [infix]]))
+(ns p078)
 
-(definline s [k] `(if (even? ~k) 1 -1))
+(defn- s [k] (if (even? k) -1 1))
 
-(defn g [k] (infix ((k * ((3 * k) - 1)) / 2)))
+(defn- g [k] (quot (* k (dec (* 3 k))) 2))
 
-(defn p [n]
-  (cond (= n 0) 1
+(def ^:private gs
+  (->> (interleave (iterate inc 1) (iterate dec -1))
+       (map (fn [k] [(s k) (g k)]))))
+
+(defn- p [n]
+  (cond (< n 0) 0
+        (= n 0) 1
         (= n 1) 1
         (= n 2) 2
         (= n 3) 3
-        :else (->> (interleave (iterate inc 1) (iterate dec -1))
-                   (take-while #(<= 0 (- n (g %))))
-                   (map (fn [k] (mod (* (s (dec k)) (p (- n (g k)))) 1000000)))
-                   (apply +'))))
+        :else (->> gs
+                   (take-while #(<= (second %) n))
+                   (map (fn [[s g]] (mod (* s (p (- n g))) 1000000)))
+                   (apply +))))
 
 (def p (memoize p))
 
-(defn p078 []
-  (->> (iterate inc 1)
+(defn solve []
+  (->> (range)
        (map #(vector % (p %)))
        (drop-while #(not= 0 (mod (second %) 1000000)))
        ffirst))
-
-(defn solve []
-  (time (p078)))
