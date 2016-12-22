@@ -5,7 +5,7 @@
   (->> (clojure.string/split (slurp "data/matrix.txt") #"\r\n")
        (mapv (fn [line] (mapv parse-int (clojure.string/split line #","))))))
 
-(defn t
+(defn- t
   "returns the lists of positions of elemements in diagonal order
    (/ direction) from right-bottom to left-top."
   [n]
@@ -16,12 +16,12 @@
             (for [j (range (- (dec n) i))]
               [(- (dec n) j i 1) j]))))
 
-(defn mg [xs ys]
+(defn- mg [xs ys]
   (flatten (vector (first xs)
                    (map min (rest xs) ys)
                    (last ys))))
 
-(defn min-sum [xs ys]
+(defn- min-sum [xs ys]
   (if (< (count xs) (count ys))
     (mg (map + xs ys) (map + xs (rest ys)))
     (map min (map + xs ys) (map + (rest xs) ys))))
