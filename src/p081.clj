@@ -1,9 +1,10 @@
 (ns p081
-  (:require [util :refer [parse-int]]))
+  (:require [util :refer [split parse-int]]))
 
-(def m
-  (->> (clojure.string/split (slurp "data/matrix.txt") #"\r\n")
-       (mapv (fn [line] (mapv parse-int (clojure.string/split line #","))))))
+(def ^:private m
+  (->> (slurp "data/matrix.txt")
+       (split  #"\r\n")
+       (mapv (fn [line] (mapv parse-int (split #"," line ))))))
 
 (defn- t
   "returns the lists of positions of elemements in diagonal order

@@ -150,6 +150,9 @@
             (take-nth 2)
             (apply =))))
 
+(defmacro split [re s]
+  `(clojure.string/split ~s ~re))
+
 (defmacro infix
   "transform then given infix arithematic expresssion to prefix and compute it."
   [ops]
