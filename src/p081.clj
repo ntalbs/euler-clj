@@ -26,10 +26,8 @@
     (mg (map + xs ys) (map + xs (rest ys)))
     (map min (map + xs ys) (map + (rest xs) ys))))
 
-(defn p081 [m]
-  (->> (map (fn [ks] (for [k ks] (get-in m k))) (t (count m)))
+(defn solve []
+  (->> (t (count m))
+       (map (fn [ks] (for [k ks] (get-in m k))))
        (reduce min-sum)
        first))
-
-(defn solve []
-  (time (println (p081 m))))
