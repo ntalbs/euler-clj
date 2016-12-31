@@ -51,8 +51,6 @@
     (if (nil? (n :prev))
       (conj acc [(n :row) (n :col)])
       (recur (n :prev) (conj acc [(n :row) (n :col)])))))
-      ;; (conj acc [(n :row) (n :col) (n :val) (n :sum)])
-      ;; (recur (n :prev) (conj acc [(n :row) (n :col) (n :val) (n :sum)])))))
 
 (defn solve []
   (loop [data    m
