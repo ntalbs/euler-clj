@@ -1,7 +1,10 @@
 (ns p082
-  (:require [p081 :only [m]]))
+  (:require [util :refer [parse-int split]]))
 
-(def m p081/m)
+(def ^:private m
+  (->> (slurp "data/matrix.txt")
+       (split  #"\r\n")
+       (mapv (fn [line] (mapv parse-int (split #"," line ))))))
 
 (defn cost [vs [x y]]
   (if (empty? vs)
