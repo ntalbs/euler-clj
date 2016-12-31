@@ -1,6 +1,5 @@
 (ns p083
-  (:require [util :refer [split parse-int]]
-            [clojure.data.priority-map]))
+  (:require [util :refer [split parse-int]]))
 
 (def ^:private m
   (->> (slurp "data/matrix.txt")
