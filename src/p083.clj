@@ -4,7 +4,6 @@
 (def ^:private m
   (->> (slurp "data/matrix.txt")
        (split  #"\r\n")
-       ;; (mapv (fn [line] (mapv parse-int (split #"," line ))))))
        (mapv (fn [line] (mapv (fn [s] {:val (parse-int s)}) (split #"," line ))))))
 
 (def ^:private SIZE (count m))
