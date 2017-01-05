@@ -17,14 +17,11 @@
             (for [j (range (- (dec n) i))]
               [(- (dec n) j i 1) j]))))
 
-(defn- mg [xs ys]
-  (flatten (vector (first xs)
-                   (map min (rest xs) ys)
-                   (last ys))))
-
 (defn- min-sum [xs ys]
   (if (< (count xs) (count ys))
-    (mg (map + xs ys) (map + xs (rest ys)))
+    (concat [(+ (first xs) (first ys))]
+            (min-sum xs (->> ys rest butlast))
+            [(+ (last xs) (last ys))])
     (map min (map + xs ys) (map + (rest xs) ys))))
 
 (defn solve []
