@@ -55,9 +55,7 @@
          pq      (sorted-set-by node-comparator start-node)
          current (first pq)]
     (if (destination? current)
-      (do
-        (println (path current))
-        (current :sum))
+      (current :sum)
       (let [prev1 (current :prev)
             prev2 (if prev1 (prev1 :prev))
             ns    (->> (neighbors current)
