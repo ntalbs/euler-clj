@@ -96,4 +96,5 @@
   (->> (repeatedly 10 simulate)
        (group-by identity)
        (map (fn [[k xs]] [k (count xs)]))
-       (sort-by second #(compare %2 %1))))
+       (sort-by second)
+       (ffirst)))
