@@ -24,10 +24,7 @@
        (difference sqnums)
        empty?))
 
-(defn p090 []
+(defn solve []
   (->> set-pairs
        (filter (fn [pair] (check (first pair) (second pair))))
        count))
-
-(defn solve []
-  (time (println (p090))))

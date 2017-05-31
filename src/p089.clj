@@ -16,10 +16,7 @@
   (->> (map count coll)
        (apply +)))
 
-(defn p089 []
+(defn solve []
   (let [cnt0 (count-chars romans)
         cnt1 (count-chars (map shorten romans))]
     (- cnt0 cnt1)))
-
-(defn solve []
-  (time (println (p089))))
