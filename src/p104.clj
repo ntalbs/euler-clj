@@ -15,13 +15,10 @@
 (defn not-pandigital? [sn]
   (not (pandigital? sn)))
 
-(defn p104 []
+(defn solve []
   (->> (iterate fibo [1 1])
        (map-indexed (fn [i e] [(inc i) e]))
        (drop-while (fn [[_ [a b]]]
                      (or (not-pandigital? (last-9-digits a))
                          (not-pandigital? (first-9-digits a)))))
        ffirst))
-
-(defn solve []
-  (time (println (p104))))

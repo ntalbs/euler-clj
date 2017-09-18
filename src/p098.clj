@@ -37,11 +37,8 @@
         ns (for [m ms] (digits-to-num (map #(m %) w2)))]
     (first (filter #(contains? sqns %) ns))))
 
-(defn p098 []
+(defn solve []
   (->> anagrams
        (map #(check %))
        (remove nil?)
        (apply max)))
-
-(defn solve []
-  (time (println (p098))))

@@ -8,8 +8,5 @@
        (map (fn [[b e]] (* e (Math/log10 b))))
        (map-indexed vector)))
 
-(defn p099 []
-  (+ 1 (first (apply max-key (fn [[i v]] v) log-vals)))) ; +1, since log-vals index is zero-based
-
 (defn solve []
-  (time (println (p099))))
+  (+ 1 (first (apply max-key (fn [[i v]] v) log-vals)))) ; +1, since log-vals index is zero-based

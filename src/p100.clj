@@ -9,11 +9,8 @@
 
 (def target 1000000000000)
 
-(defn p100 []
+(defn solve []
   (loop [b 15, n 21]
     (if (< n target)
       (recur (next-b b n) (next-n b n))
       b)))
-
-(defn solve []
-  (time (println (p100))))

@@ -26,4 +26,4 @@
        (apply max-key count)))
 
 (defn solve []
-  (time (println (apply min (longest-chain limit)))))
+  (apply min (longest-chain limit)))

@@ -22,8 +22,5 @@
   (map (fn [s] (map parse-int (split s #",")))
        (split (slurp "data/triangles.txt") #"\n")))
 
-(defn p102 []
-  (count (filter #(= % true) (map check triangles))))
-
 (defn solve []
-  (time (println (p102))))
+  (count (filter #(= % true) (map check triangles))))

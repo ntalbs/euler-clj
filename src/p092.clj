@@ -11,10 +11,7 @@
         (= n 89) true
         :else (recur (sum-sq-digits n))))
 
-(defn p092 []
+(defn solve []
   (->> (range 1 10000000)
        (filter reach89?)
        (count)))
-
-(defn solve []
-  (time (println (p092))))

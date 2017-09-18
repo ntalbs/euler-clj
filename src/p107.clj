@@ -53,11 +53,8 @@
 (defn sum-weight [edges]
   (reduce + (map (fn [[_ _ w]] w) edges)))
 
-(defn p107 []
+(defn solve []
   (let [mst (kruskal ds edges)
         weight-mst (sum-weight mst)
         weight-total (sum-weight edges)]
     (- weight-total weight-mst)))
-
-(defn solve []
-  (time (println (p107))))

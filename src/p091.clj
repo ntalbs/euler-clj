@@ -29,8 +29,5 @@
 
 ; p1, p2가 위치만 바뀐 경우가 있으므로 2로 나눠야 함
 ; XXX: p1, p2 생성 시 위치만 바뀐 것은 생성되지 않도록 할 수는 없을까?
-(defn p091 []
-  (/ (count right-triangles) 2))
-
 (defn solve []
-  (time (println (p091))))
+  (/ (count right-triangles) 2))

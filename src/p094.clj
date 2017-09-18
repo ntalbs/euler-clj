@@ -33,5 +33,3 @@
        (take-while (fn [{p :perimeter}] (<= p limit)))
        (map (fn [{p :perimeter}] p))
        (apply +)))
-
-(time (solve))
