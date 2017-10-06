@@ -3,7 +3,8 @@
             [clojure.string :refer [split]]))
 
 (def log-vals
-  (->> (map (fn [s] (split s #",")) (split (slurp "data/base_exp.txt") #"\r\n"))
+  (->> (split (slurp "data/base_exp.txt") #"\r\n")
+       (map (fn [s] (split s #",")))
        (map (fn [[b e]] [(parse-int b) (parse-int e)]))
        (map (fn [[b e]] (* e (Math/log10 b))))
        (map-indexed vector)))
