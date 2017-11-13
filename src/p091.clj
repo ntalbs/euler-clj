@@ -12,11 +12,13 @@
 (defn solve []
   (->> points
        (map fn-line-perpendicular-to)
-       (mapcat (fn [f] (->> (range (inc LIMIT))
-                            (map f)
-                            (filter integer?)
-                            (filter #(<= 0 % 50)))))
-       count
-       (+ 2500)   ; P, Q가 각각 x축, y축에 있는 경우
-       (+ 2500)   ; P는 x축, Q는 1사분면 안에 있는 경우
-       (+ 2500))) ; P는 y축, Q는 1사분면 안에 있는 경우
+       (map (fn [f] (->> (range (inc LIMIT))
+                         (map f)
+                         (filter integer?)
+                         (filter #(<= 0 % 50))
+                         count
+                         dec)))  ; P=Q인 경우는 제외
+       (apply +)
+       (+ 2500)                  ; P, Q가 각각 x축, y축에 있는 경우
+       (+ 2500)                  ; P는 x축, Q는 1사분면 안에 있는 경우
+       (+ 2500)))                ; P는 y축, Q는 1사분면 안에 있는 경우
