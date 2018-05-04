@@ -24,8 +24,12 @@
        (count)
        (inc)))
 
+(defn- digits->int [ds]
+  (reduce (fn [acc x] (+ (* 10 acc) x)) ds))
+
 (defn solve []
   (->> (combinations (range 1 10) 4)
        (map gen)
        (apply max-key (fn [x] (count-consective (:target x))))
-       (:set)))
+       (:set)
+       digits->int))
