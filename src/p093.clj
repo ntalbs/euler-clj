@@ -1,14 +1,18 @@
 (ns p093
   (:require [clojure.math.combinatorics :refer [permutations combinations]]))
 
-;; 일단 답은 구하지만 target 함수가 정말 모든 경우를 고려하고 있는지는 검토가 필요함.
+(defn- div [a b]
+  (if (zero? b) -1 (/ a b)))
 
 (defn- target [[a b c d]]
-  (let [op [+ - * /]]
-    (->> (for [f1 op, f2 op, f3 op]
-           [(-> (f1 a b) (f2 c) (f3 d))
-            (-> (f3 (f1 a b) (f2 c d)))])
-         (flatten))))
+  (let [ops [+ - * div]]
+    (flatten
+     (for [op1 ops, op2 ops, op3 ops]
+       [(op3 (op2 (op1 a b) c) d)       ; ((a op1 b) op2 c) op3 d
+        (op2 (op1 a b) (op3 c d))       ; (a op1 b) op2 (c op3 d)
+        (op3 (op1 a (op2 b c)) d)       ; (a op1 (b op2 c)) op3 d
+        (op1 a (op3 (op2 b c) d))       ; a op1 ((b op2 c) op3 d)
+        (op1 a (op2 b (op3 c d)))]))))  ; a op1 (b op2 (c op3 d))
 
 (defn- gen [[a b c d]]
   (->> (permutations [a b c d])
