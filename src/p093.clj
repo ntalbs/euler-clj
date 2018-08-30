@@ -2,17 +2,23 @@
   (:require [clojure.math.combinatorics :refer [permutations combinations]]))
 
 (defn- div [a b]
-  (if (zero? b) -1 (/ a b)))
+  (if (zero? b) nil (/ a b)))
+
+(defn- op [f]
+  (fn [a b]
+    (if-not (or (nil? a) (nil? b))
+      (f a b))))
 
 (defn- target [[a b c d]]
-  (let [ops [+ - * div]]
-    (flatten
-     (for [op1 ops, op2 ops, op3 ops]
-       [(op3 (op2 (op1 a b) c) d)       ; ((a op1 b) op2 c) op3 d
-        (op2 (op1 a b) (op3 c d))       ; (a op1 b) op2 (c op3 d)
-        (op3 (op1 a (op2 b c)) d)       ; (a op1 (b op2 c)) op3 d
-        (op1 a (op3 (op2 b c) d))       ; a op1 ((b op2 c) op3 d)
-        (op1 a (op2 b (op3 c d)))]))))  ; a op1 (b op2 (c op3 d))
+  (let [ops [(op +) (op -) (op *) (op div)]]
+    (->> (for [op1 ops, op2 ops, op3 ops]
+           [(op3 (op2 (op1 a b) c) d)       ; ((a op1 b) op2 c) op3 d
+            (op2 (op1 a b) (op3 c d))       ; (a op1 b) op2 (c op3 d)
+            (op3 (op1 a (op2 b c)) d)       ; (a op1 (b op2 c)) op3 d
+            (op1 a (op3 (op2 b c) d))       ; a op1 ((b op2 c) op3 d)
+            (op1 a (op2 b (op3 c d)))])     ; a op1 (b op2 (c op3 d))
+         (flatten)
+         (remove nil?))))
 
 (defn- gen [[a b c d]]
   (->> (permutations [a b c d])
