@@ -1,22 +1,22 @@
 ;; slow. need to be improved.
 
-(ns p095
-  (:require [util :refer [proper-divisors]]))
+(ns p095)
 
 (def limit 1000000)
 
-(defn sum-of-divs [n]
-  (cond (nil? n) nil
-        (= n 1) nil
-        (> n limit) nil
-        :else (apply + (proper-divisors n))))
-
-(def sum-of-divs (memoize sum-of-divs))
+(def n->sod
+  (->> (for [i (range 1 (/ limit 2))
+             j (range (* 2 i) limit i)]
+         [j i])
+       (group-by first)
+       (map (fn [[k v]] [k (map second v)]))
+       (map (fn [[k v]] [k (apply + v)]))
+       (into {})))
 
 (defn find-chain [n]
   (loop [n n s #{} acc []]
     (if-not (contains? s n)
-      (recur (sum-of-divs n) (conj s n) (conj acc n))
+      (recur (n->sod n) (conj s n) (conj acc n))
       (if (or (nil? (last acc)) (not= n (first acc))) nil acc))))
 
 (defn longest-chain [limit]
