@@ -24,21 +24,36 @@
       (recur (next ds) (* p 10) (+ n (* (first ds) p)))
       n)))
 
-(defn c->n [w sqns]
-  (->> (for [n sqns] (into {} (map vector w (digits n))))
+(defn c->n [w]
+  (->> (for [n (sqnums (count w))] (into {} (map vector w (digits n))))
        (filter (fn [m]
                  (= 1 (->> (group-by second m)
                            (map (fn [[k v]] (count v)))
                            (apply max)))))))
 
+(defn w->sqns [w]
+  (letfn [(same-letters-have-same-digit? [m]
+            (= 1 (->> (group-by first x)
+                      (map (fn [[_ v]] (count (distinct v))))
+                      (apply max))))
+          (diff-letters-have-diff-digits? [m]
+            (= 1 (->> (group-by second x)
+                      (map (fn [[_ v]] (count v)))
+                      (apply max))))]
+    (->> (for [n (sqnums (count w))] (map vector w (digits n)))
+         (filter same-letters-have-same-digit?)
+         (filter diff-letters-have-diff-digits?)
+         (map (fn [x] (into {} x)))))
+
 (defn check [[w1 w2]]
   (let [sqns (sqnums (count w1))
-        ms (c->n w1 sqns)
+        ms (w->sqns w1)
         ns (for [m ms] (digits-to-num (map #(m %) w2)))]
-    (first (filter #(contains? sqns %) ns))))
+    (filter #(contains? sqns %) ns)))
 
 (defn solve []
   (->> anagrams
        (map #(check %))
-       (remove nil?)
+       (remove empty?)
+       (flatten)
        (apply max)))
