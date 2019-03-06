@@ -1,4 +1,3 @@
-euler
-=====
+# euler
 
-Project Euleri(http://projecteuler.net) solutions in Clojure.
+Project Euler(http://projecteuler.net) solutions in Clojure.
