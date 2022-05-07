@@ -8,3 +8,4 @@ pom.xml
 .lein-deps-sum
 .nrepl-port
 /.lein-repl-history
+/.lein-failures
