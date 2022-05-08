@@ -31,3 +31,6 @@
          {:a*b (* a b) :cnt (prime-count a b)})
        (apply max-key :cnt)
        :a*b))
+
+(defn solve []
+  (solve2))

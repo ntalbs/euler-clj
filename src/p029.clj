@@ -23,3 +23,6 @@
     (->> (for [a rng b rng] (digits-pow a b))
          set
          count)))
+
+(defn solve []
+  (solve1))

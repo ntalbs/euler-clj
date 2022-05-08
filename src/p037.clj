@@ -53,3 +53,6 @@
        (filter #(and (left-truncatable-prime? %) (right-truncatable-prime? %)))
        (take 11)
        (reduce +)))
+
+(defn solve []
+  (solve2))

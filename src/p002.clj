@@ -31,5 +31,4 @@
        (apply +)))
 
 (defn solve []
-  (time (println (using-memoization)))
-  (time (println (using-iteration))))
+  (using-iteration))

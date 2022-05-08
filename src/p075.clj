@@ -35,3 +35,6 @@
        (group-by identity)
        (filter (fn [[_ ls]] (= 1 (count ls))))
        count))
+
+(defn solve []
+  (solve2))

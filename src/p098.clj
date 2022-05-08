@@ -43,7 +43,7 @@
     (->> (for [n (sqnums (count w))] (map vector w (digits n)))
          (filter same-letters-have-same-digit?)
          (filter diff-letters-have-diff-digits?)
-         (map (fn [x] (into {} x)))))
+         (map (fn [x] (into {} x))))))
 
 (defn check [[w1 w2]]
   (let [sqns (sqnums (count w1))

@@ -38,3 +38,6 @@
        (partition 13 1)
        (map #(apply * %))
        (reduce max)))
+
+(defn solve []
+  (solve-en))

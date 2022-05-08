@@ -5,4 +5,4 @@
   (:require [clojure.math.combinatorics :as c]))
 
 (defn solve []
-  (apply str (c/nth-permutation (range 10) (dec 1000000))))
+  (Long/parseLong (apply str (c/nth-permutation (range 10) (dec 1000000)))))

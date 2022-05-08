@@ -26,5 +26,4 @@
   (- (sq-of-sum n) (sum-of-sq n)))
 
 (defn solve []
-  (time (println "initial => " (using-brute-force 100)))
-  (time (println "improved => " (using-formula 100))))
+  (using-formula 100))

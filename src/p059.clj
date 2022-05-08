@@ -3,7 +3,7 @@
             [clojure.string :refer [split trim]]))
 
 (def encrypted-message
-  (->> (split (slurp "data/cipher1.txt") #",")
+  (->> (split (slurp "data/p059_cipher.txt") #",")
        (map trim)
        (map parse-int)))
 

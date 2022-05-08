@@ -15,3 +15,6 @@
 
 (defn solve3 []
   (apply + (filter #(amicable? % aliquot-sum3) (range 1 10000))))
+
+(defn solve []
+  (solve3))

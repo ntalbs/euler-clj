@@ -41,5 +41,4 @@
        (apply *)))
 
 (defn solve []
-  (time (println (using-brute-force)))
-  (time (println (using-formula))))
+  (using-formula))

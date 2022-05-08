@@ -25,4 +25,4 @@
              (into acc (minus (set (map first ps)) (set (map second ps))))))))
 
 (defn solve []
-  (apply str (find-key pairs [])))
+  (Long/parseLong (apply str (find-key pairs []))))

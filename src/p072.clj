@@ -48,3 +48,6 @@
       (if (< i limit)
         (recur (inc i) (+ acc (aget phi i)))
         acc))))
+
+(defn solve []
+  (solve3))

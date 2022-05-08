@@ -47,3 +47,6 @@
        (filter (fn [[k _]] (= k 60)))
        (map second)
        (apply +)))
+
+(defn solve []
+  (solve2))

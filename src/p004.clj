@@ -25,3 +25,6 @@
          (* a b))
        (filter palindrome?)
        (apply max)))
+
+(defn solve []
+  (solve2))

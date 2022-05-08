@@ -105,10 +105,15 @@
 (defn solve1 []
   (-> (apply + nums)
       str
-      (subs 0 10)))
+      (subs 0 10)
+      (Long/parseLong)))
 
 (defn solve2 []
   (->> (map digits nums)
        (reduce digits+)
        (take 10)
-       (apply str)))
+       (apply str)
+       (Long/parseLong)))
+
+(defn solve []
+  (solve2))

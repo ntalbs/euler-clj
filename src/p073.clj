@@ -33,3 +33,6 @@
         (let [k (quot (+ limit b) d)]
           (recur c d (- (* k c) a) (- (* k d) b) (inc acc)))
         acc))))
+
+(defn solve []
+  (solve2))

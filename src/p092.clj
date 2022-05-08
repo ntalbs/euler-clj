@@ -46,3 +46,6 @@
          (filter (fn [[k cnt]] (reach89? k)))
          (map (fn [[k cnt]] cnt))
          (apply +))))
+
+(defn solve []
+  (solve2))

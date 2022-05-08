@@ -17,5 +17,4 @@
        (reduce +)))
 
 (defn solve []
-  (time (println (using-pred)))
-  (time (println (using-seq))))
+  (using-seq))

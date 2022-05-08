@@ -13,4 +13,5 @@
   (->> (range 9999 1 -1)
        (map prod-concat)
        (drop-while #(not (pandigital? %)))
-       first))
+       first
+       (Long/parseLong)))

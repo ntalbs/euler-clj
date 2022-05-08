@@ -32,4 +32,5 @@
        (filter not-empty)
        distinct
        (map #(apply str %))
-       second))
+       second
+       (Long/parseLong)))

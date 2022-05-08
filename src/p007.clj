@@ -18,5 +18,4 @@
        first))
 
 (defn solve []
-  (time (println "using-pred => " (using-pred)))
-  (time (println "using-seq => " (using-seq))))
+  (using-seq))

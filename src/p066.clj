@@ -23,4 +23,5 @@
   (->> (range 2 (inc 1000))
        (filter (complement perfect-square?))
        (map (fn [d] [d (first (find-fundamental-solution d))]))
-       (apply (partial max-key second))))
+       (apply (partial max-key second))
+       first))

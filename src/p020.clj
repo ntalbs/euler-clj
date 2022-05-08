@@ -10,3 +10,6 @@
   (->> (range 1 (inc 100))
        (reduce digits* [1])
        (apply +)))
+
+(defn solve []
+  (solve1))

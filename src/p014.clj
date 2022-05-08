@@ -45,3 +45,6 @@
        (map (fn [n] [n (collatz3 n)]))
        (apply max-key second)
        first))
+
+(defn solve []
+  (solve3))

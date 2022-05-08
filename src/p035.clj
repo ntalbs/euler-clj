@@ -41,7 +41,7 @@
 (defn solve1 []
   (->> primes
        (take-while #(< % 1000000))
-       (filter circular-prime?)
+       (filter circular-prime1?)
        count))
 
 (defn solve2 []
@@ -49,3 +49,6 @@
        (take-while #(< % 1000000))
        (filter circular-prime2?)
        count))
+
+(defn solve[]
+  (solve2))

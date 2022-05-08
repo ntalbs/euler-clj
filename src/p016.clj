@@ -14,3 +14,6 @@
        (drop 1000)
        first
        (reduce +)))
+
+(defn solve []
+  (solve1))

@@ -61,8 +61,11 @@
        (filter (fn [[_ _ dm dw]] (and (= 1 dm) (zero? dw))))
        (count)))
 
-(do
-  (time (print "1: " (solve1) "\t"))
-  (time (print "2: " (solve2) "\t"))
-  (time (print "3: " (solve3) "\t"))
-  (time (print "4: " (solve4) "\t")))
+;; (do
+;;   (time (print "1: " (solve1) "\t"))
+;;   (time (print "2: " (solve2) "\t"))
+;;   (time (print "3: " (solve3) "\t"))
+;;   (time (print "4: " (solve4) "\t")))
+
+(defn solve []
+  (solve4))
