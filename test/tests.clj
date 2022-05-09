@@ -97,7 +97,7 @@
             [p095]
             [p096]
             [p097]
-;            [p098]
+            [p098]
             [p099]
             [p100]))
 
@@ -199,6 +199,6 @@
   (testing "p095" (is (= 14316 (p095/solve))))
   (testing "p096" (is (= 24702 (p096/solve))))
   (testing "p097" (is (= 8739992577 (p097/solve))))
-;  (testing "p098" (is (= 18769 (p098/solve))))
+  (testing "p098" (is (= 18769 (p098/solve))))
   (testing "p099" (is (= 709 (p099/solve))))
   (testing "p100" (is (= 756872327473 (p100/solve)))))

@@ -33,11 +33,11 @@
 
 (defn w->sqns [w]
   (letfn [(same-letters-have-same-digit? [m]
-            (= 1 (->> (group-by first x)
+            (= 1 (->> (group-by first m)
                       (map (fn [[_ v]] (count (distinct v))))
                       (apply max))))
           (diff-letters-have-diff-digits? [m]
-            (= 1 (->> (group-by second x)
+            (= 1 (->> (group-by second m)
                       (map (fn [[_ v]] (count v)))
                       (apply max))))]
     (->> (for [n (sqnums (count w))] (map vector w (digits n)))
