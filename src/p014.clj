@@ -47,4 +47,4 @@
        first))
 
 (defn solve []
-  (solve3))
+  (solve2))
