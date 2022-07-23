@@ -185,7 +185,7 @@
   (testing "p081" (is (= 427337 (p081/solve))))
   (testing "p082" (is (= 260324 (p082/solve))))
   (testing "p083" (is (= 425185 (p083/solve))))
-  (testing "p084" (is (= 101524 (p084/solve))))
+  (testing "p084" (is (= "101524" (p084/solve))))
   (testing "p085" (is (= 2772 (p085/solve))))
   (testing "p086" (is (= 1818 (p086/solve))))
   (testing "p087" (is (= 1097343 (p087/solve))))
