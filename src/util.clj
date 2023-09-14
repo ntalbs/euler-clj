@@ -85,16 +85,17 @@
 (defn- ceil [x]
   (inc (int x)))
 
+;; Primality test
+;; https://en.wikipedia.org/wiki/Primality_test
 (defn prime?
   "Returns true if n is prime."
   [n]
-  (cond (< n 2) false
-        (< n 4) true                    ; 2, 3
-        (even? n) false
-        (< n 9) true                    ; 5, 7
-        (= 0 (mod n 3)) false
-        :else (nil? (first (filter #(= 0 (mod n %))
-                                   (range 5 (ceil (Math/sqrt n)) 2))))))
+  (cond (or (= n 2) (= n 3)) true
+        (or (<= n 1) (= 0 (mod n 2)) (= 0 (mod n 3))) false
+        :else (loop [i 5]
+                (cond (> (* i i) n) true
+                      (or (= 0 (mod n i)) (= 0 (mod n (+ i 2)))) false
+                      :else (recur (+ i 6))))))
 
 (defn factorize
   "Returns a sequence of pairs of prime factor and its exponent."
