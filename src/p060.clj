@@ -18,10 +18,11 @@
 
 (def concated-prime? (memoize concated-prime?))
 
-(defn any-two-concat-prime? [ps]
-  (->> (combinations ps 2)
-       (drop-while (fn [[a b]] (concated-prime? a b)))
-       empty?))
+(defn any-two-concat-prime? [ps p]
+  ;; (->> (combinations ps 2)
+  ;;      (drop-while (fn [[a b]] (concated-prime? a b)))
+  ;;      empty?))
+  (every? (fn [x] (concated-prime? x p)) ps))
 
 (def ps1
   (take-while #(< % limit) (drop 1 primes)))
@@ -35,19 +36,19 @@
 (def ps3
   (for [[p1 p2] ps2, p3 ps1
         :when (< p1 p2 p3)
-        :when (any-two-concat-prime? [p1 p2 p3])]
+        :when (any-two-concat-prime? [p1 p2] p3)]
     [p1 p2 p3]))
 
 (def ps4
   (for [[p1 p2 p3] ps3, p4 ps1
         :when (< p1 p2 p3 p4)
-        :when (any-two-concat-prime? [p1 p2 p3 p4])]
+        :when (any-two-concat-prime? [p1 p2 p3] p4)]
     [p1 p2 p3 p4]))
 
 (def ps5
   (for [[p1 p2 p3 p4] ps4 p5 ps1
         :when (< p1 p2 p3 p4 p5)
-        :when (any-two-concat-prime? [p1 p2 p3 p4 p5])]
+        :when (any-two-concat-prime? [p1 p2 p3 p4] p5)]
     [p1 p2 p3 p4 p5]))
 
 (defn solve []
